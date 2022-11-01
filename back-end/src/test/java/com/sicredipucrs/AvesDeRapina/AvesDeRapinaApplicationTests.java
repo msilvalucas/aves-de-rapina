@@ -1,10 +1,10 @@
-package br.com.aves.rapina;
+package com.sicredipucrs.AvesDeRapina;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RapinaApplicationTests {
+class AvesDeRapinaApplicationTests {
 
 	@Test
 	void contextLoads() {

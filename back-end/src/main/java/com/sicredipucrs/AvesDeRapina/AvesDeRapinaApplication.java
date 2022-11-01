@@ -1,13 +1,13 @@
-package br.com.aves.rapina;
+package com.sicredipucrs.AvesDeRapina;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RapinaApplication {
+public class AvesDeRapinaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RapinaApplication.class, args);
+		SpringApplication.run(AvesDeRapinaApplication.class, args);
 	}
 
 }
