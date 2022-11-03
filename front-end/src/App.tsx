@@ -1,9 +1,10 @@
 import React from 'react';
+import BirdRegister from './Components/BirdRegister';
 
 function App() {
   return (
     <div className="App">
-    <h1>Hello</h1>
+    <BirdRegister/>
     </div>
   );
 }
