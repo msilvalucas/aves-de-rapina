@@ -1,7 +1,6 @@
 package com.sicredipucrs.AvesDeRapina.controllers;
 
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
-import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,21 +27,21 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
-        List<User> users = userService.findAll();
+    public ResponseEntity<List<UserDTO>> findAll(){
+        List<UserDTO> users = userService.findAll();
         return ResponseEntity.ok().body(users);
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
-        User user = userService.findById(id);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<UserDTO> findById(@PathVariable Long id){
+        UserDTO userDto = userService.findById(id);
+        return ResponseEntity.ok().body(userDto);
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<User> findByEmail(@PathVariable String email){
-        User user = userService.findByEmail(email);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<UserDTO> findByEmail(@PathVariable String email){
+        UserDTO userDto = userService.findByEmail(email);
+        return ResponseEntity.ok().body(userDto);
     }
 
     @PutMapping("/{id}")
@@ -58,7 +57,13 @@ public class UserController {
     }
 
     @PutMapping(value = "/login/{email}/{password}")
-    public ResponseEntity<UserDTO> login(@PathVariable String email, String password) {
+    public ResponseEntity<UserDTO> login(@PathVariable String email, @PathVariable String password) {
         return ResponseEntity.ok().body(userService.loginUser(email, password));
+    }
+
+    @PutMapping(value = "/logout/{email}")
+    public ResponseEntity<UserDTO> logout(@PathVariable String email) {
+        userService.logoutUser(email);
+        return ResponseEntity.noContent().build();
     }
 }
