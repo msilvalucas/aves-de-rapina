@@ -1,14 +1,12 @@
 import React from 'react';
-import BirdRegister from './Components/BirdRegister';
-import ListBirds from './Components/ListBirds';
+import Home from "./pages/Home";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    {/* <BirdRegister/> */}
-    <ListBirds/>
-    </div>
+    <>
+      <Home />
+    </>
   );
-}
+};
 
 export default App;
