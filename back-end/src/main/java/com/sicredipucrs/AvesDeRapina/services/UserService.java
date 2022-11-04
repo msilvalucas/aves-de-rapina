@@ -1,6 +1,5 @@
 package com.sicredipucrs.AvesDeRapina.services;
 
-
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.repositories.UserRepository;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +38,6 @@ public class UserService {
         user.setLogin(userDto.getLogin());
     }
 
-
     @Transactional
     public UserDTO update(Long id, UserDTO userDto) {
         try{
@@ -62,35 +61,50 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User findById(Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public UserDTO findById(Long id) {
+        User user = userRepository.getReferenceById(id);
         if (user == null) {
-            throw new EmptyResultDataAccessException(1);
+            throw new ResourceNotFoundException("Id " + id + " not found ");
         }
-        return user.get();
+        return new UserDTO(user);
     }
 
     @Transactional(readOnly = true)
-    public User findByEmail(String email) {
+    public UserDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email);
-        return user;
+        return new UserDTO(user);
     }
 
     @Transactional(readOnly = true)
-    public List<User> findAll() {
+    public List<UserDTO> findAll() {
         List<User> users = userRepository.findAll();
-        return users;
+        List<UserDTO> usersDTO = new ArrayList<>();
+        for(User user : users){
+            usersDTO.add(new UserDTO(user));
+        }
+        return usersDTO;
     }
 
     @Transactional
     public UserDTO loginUser(String email, String password) {
         try{
             User user = userRepository.findByEmail(email);
-            user.setLogin(true);
-            user = userRepository.save(user);
+            if (user.getPassword().equals(password)) {
+                user.setLogin(true);
+                user = userRepository.save(user);
+            }
             return new UserDTO(user);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Email ou senha inválido");
+        }
+    }
+
+    @Transactional
+    public void logoutUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user.getLogin()) {
+            user.setLogin(false);
+            user = userRepository.save(user);
         }
     }
 }
