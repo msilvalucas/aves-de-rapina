@@ -3,19 +3,17 @@ package com.sicredipucrs.AvesDeRapina.services;
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.repositories.UserRepository;
-import org.apache.kafka.common.errors.ResourceNotFoundException;
-import org.springframework.beans.BeanUtils;
+import com.sicredipucrs.AvesDeRapina.services.exceptions.DatabaseException;
+import com.sicredipucrs.AvesDeRapina.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -56,7 +54,7 @@ public class UserService {
         } catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException("Id " + id + " not found ");
         } catch (DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Integrity violation");
+            throw new DatabaseException("Integrity violation");
         }
     }
 
