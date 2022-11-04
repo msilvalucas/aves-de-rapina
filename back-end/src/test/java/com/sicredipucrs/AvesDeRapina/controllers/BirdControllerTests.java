@@ -6,6 +6,9 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +69,6 @@ public class BirdControllerTests {
         doThrow(ResourceNotFoundException.class).when(service).delete(nonExistingId);
     }
 
-    //TO-DO
     @Test
     public void findBirdWithNoParamsShouldReturnAllBirds() throws Exception {
         
@@ -75,5 +77,66 @@ public class BirdControllerTests {
             .accept(MediaType.APPLICATION_JSON));
 
             result.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void findBirdWithParamsShouldReturnBirdsWithKeyWord() throws Exception {
+        
+        ResultActions result = mockMvc
+            .perform(get("/birds/search?param=" + existingParam)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void insertShouldReturnBirdDTOCreated() throws Exception {
+        
+        String jsonBody = objectMapper.writeValueAsString(birdDTO);
+
+        ResultActions result = mockMvc
+            .perform(post("/birds")
+            .content(jsonBody)
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
+    @Test
+    public void updateShouldReturnBirdDTOWhenIdExists() throws Exception {
+        
+        String jsonBody = objectMapper.writeValueAsString(birdDTO);
+
+        ResultActions result = mockMvc
+            .perform(put("/birds/{id}", existingId)
+            .content(jsonBody)
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isOk());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.nameEN").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.namePT").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.nameLAT").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.size").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.gender").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.color").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.family").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.habitat").exists());
+    }
+
+    @Test
+    public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() throws Exception {
+        
+        String jsonBody = objectMapper.writeValueAsString(birdDTO);
+
+        ResultActions result = mockMvc
+            .perform(put("/birds/{id}", nonExistingId)
+            .content(jsonBody)
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
