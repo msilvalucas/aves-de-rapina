@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { Container, Table } from 'react-bootstrap'
+import { Container, Table, Card } from 'react-bootstrap'
 import BirdRegister from './BirdRegister'
 
 interface IBirdFormState {
@@ -32,33 +32,36 @@ const List = () => {
         
     }
 
-  return (
-    <Container>
-        
-    <Table striped bordered hover size="sm">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Cor</th>
-          <th>Gênero</th>
-          <th>Família</th>
-        </tr>
-      </thead>
-      <tbody>
-        {birds.map((bird) => <tr>
-          <td>{bird.id}</td>
-          <td>{bird.namePT}</td>
-          <td>{bird.color}</td>
-          <td>{bird.gender}</td>
-          <td>{bird.family}</td>
 
-        </tr>
-        )}
-        
-        
-      </tbody>
-    </Table>
+  return (
+    <Container className='container'>
+
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nomes PT / EN / LAT</th>
+            <th>Cor</th>
+            <th>Gênero</th>
+            <th>Tamanho (CM)</th>
+            <th>Família</th>
+            <th>Habitat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {birds.map((bird) => <tr>
+            <td>{bird.id}</td>
+            <td>{bird.namePT} | {bird.nameEN} | {bird.nameLAT}</td>
+            <td>{bird.color}</td>
+            <td>{bird.gender}</td>
+            <td>{bird.size}</td>
+            <td>{bird.habitat}</td>
+            <td>{bird.family}</td>
+
+          </tr>
+          )}
+        </tbody>
+      </Table>
     </Container>
   )
 }
