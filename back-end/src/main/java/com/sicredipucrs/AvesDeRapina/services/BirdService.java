@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sicredipucrs.AvesDeRapina.dto.BirdDTO;
 import com.sicredipucrs.AvesDeRapina.entities.Bird;
 import com.sicredipucrs.AvesDeRapina.repositories.BirdRepository;
+import com.sicredipucrs.AvesDeRapina.services.exceptions.DatabaseException;
+import com.sicredipucrs.AvesDeRapina.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class BirdService {
@@ -71,7 +72,7 @@ public class BirdService {
         } catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException("Id " + id + " not found ");
         } catch (DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Integrity violation");
+            throw new DatabaseException("Integrity violation");
         }
     }
 
