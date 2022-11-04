@@ -1,12 +1,13 @@
-import React from 'react';
-import BirdRegister from './Components/BirdRegister';
+import React from "react";
 
-function App() {
+import Home from "./pages/Home";
+
+const App = () => {
   return (
-    <div className="App">
-    <BirdRegister/>
-    </div>
+    <>
+      <Home />
+    </>
   );
-}
+};
 
 export default App;
