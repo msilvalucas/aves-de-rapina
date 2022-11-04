@@ -1,114 +1,163 @@
-import React from 'react'
-import { InputGroup, Form, Container } from 'react-bootstrap';
+import React, { useCallback, useState } from 'react'
+import {Container} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Axios from 'axios';
 
-// interface iBirdForm {
-//     id: number;
-//     namePT: string;
-//     nameEN: string;
-//     nameLAT: string;
-//     size: number;
-//     gender: string;
-//     color: string;
-//     family: string;
-//     habitat: string;
-    
-// }
-
-const BirdRegister = () => {
-  return (
-    <>
-    <div className="container mt-5">
-       <form>
-        <h1>Cadastro de Ave</h1>
-        <h2>Nomes</h2>
-            <div className="form-row">
-                <div className="form-group col-md-4">
-                
-                <input type="text" className="form-control" id="portugueseName" placeholder="Nome em português"/>
-                </div>
-                <div className="form-group col-md-4">
-                
-                <input type="text" className="form-control" id="englishName" placeholder="Nome em inglês"/>
-                </div>
-                <div className="form-group col-md-4">
-
-                <input type="text" className="form-control" id="latinName" placeholder="Nome em latim"/>
-                </div>
-            </div>
-            <h2>Outras características</h2>
-            <div className="form-row">
-                <div className="form-group col-md-4">
-                <label htmlFor="labelSize">Tamanho</label>
-                <input type="text" className="form-control" id="birdSize" placeholder="Digite o tamanho da ave"/>
-                </div>
-                <div className="form-group col-md-4">
-                <label htmlFor="labelColor">Cor</label>
-                <input type="text" className="form-control" id="birdColor" placeholder="Digite a cor da ave"/>
-                </div>
-                <div className="form-group col-md-4">
-                <label htmlFor="labelGender">Gênero</label>
-                <select id="selectGender" className="form-control">
-                    <option selected>Escolher...</option>
-                    <option>Fêmea</option>
-                    <option>Macho</option>
-                </select>
-                </div>
-            </div>
-            <div className="form-row">
-                <div className="form-group col-md-6">
-                <label htmlFor="laberFamily">Família</label>
-                <input type="text" className="form-control" id="birdFamily" placeholder="Família"/>
-                </div>
-                <div className="form-group col-md-6">
-                <label htmlFor="labelHabitat">Habitat</label>
-                <input type="text" className="form-control" id="birdHabitat" placeholder="Nome em inglês"/>
-                </div>
-            </div>
-            <button type="submit" className="btn btn-primary">Entrar</button>
-        </form>
-    </div>
-    <Container>
-    <InputGroup className="mb-3">
-    <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-    <Form.Control
-      placeholder="Username"
-      aria-label="Username"
-      aria-describedby="basic-addon1"
-    />
-  </InputGroup>
-
-  <InputGroup className="mb-3">
-    <Form.Control
-      placeholder="Recipient's username"
-      aria-label="Recipient's username"
-      aria-describedby="basic-addon2"
-    />
-    <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
-  </InputGroup>
-
-  <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
-  <InputGroup className="mb-3">
-    <InputGroup.Text id="basic-addon3">
-      https://example.com/users/
-    </InputGroup.Text>
-    <Form.Control id="basic-url" aria-describedby="basic-addon3" />
-  </InputGroup>
-
-  <InputGroup className="mb-3">
-    <InputGroup.Text>$</InputGroup.Text>
-    <Form.Control aria-label="Amount (to the nearest dollar)" />
-    <InputGroup.Text>.00</InputGroup.Text>
-  </InputGroup>
-
-  <InputGroup>
-    <InputGroup.Text>With textarea</InputGroup.Text>
-    <Form.Control as="textarea" aria-label="With textarea" />
-  </InputGroup>
-  </Container>
-  </>
-  )
+interface IBirdFormState {
+  namePT: string,
+  nameEN: string,
+  nameLAT: string,
+  size: string,
+  gender: string,
+  color: string,
+  family: string,
+  habitat: string,
 }
 
 
 
-export default BirdRegister
+const BirdRegister = () => {
+
+    const [formState, setFormState] = useState<IBirdFormState>({
+      namePT: "",
+      nameEN: "",
+      nameLAT: "",
+      size: "",
+      gender: "",
+      color: "",
+      family: "",
+      habitat: "",
+    });
+
+    // console.log(formState)
+
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      // Preventing the page from reloading
+      event.preventDefault();
+      console.log(formState, "teste")
+      // post
+      Axios.post('http://localhost:8080/birds', formState)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+     
+        // get
+      Axios.get('http://localhost:8080/birds/search/', { params: { param: formState.nameEN } })
+        .then(res => console.log(res, "teste"))
+        .catch(err => console.log(err, "teste"))
+      }
+
+  return (
+    <>
+    <Container>
+    <Form onSubmit={handleSubmit}>
+      <h1>Cadastro de Aves</h1>
+      <h2 className='subtitulo'>Nomes</h2>
+      <Row className="mb-3">
+        
+        <Form.Group as={Col}>
+          <Form.Control 
+            placeholder="Nome em Português" 
+            type='text' 
+            onChange={(event) => setFormState({
+              ...formState,
+              namePT: event.currentTarget?.value || "",
+            })} 
+            id="namePT" />
+        </Form.Group>
+
+        <Form.Group as={Col}>
+          <Form.Control 
+            placeholder="Nome em Inglês"
+            type='text'
+            onChange={(event) => setFormState({
+              ...formState,
+              nameEN: event.currentTarget?.value || "",
+            })} 
+            id="nameEN" />
+        </Form.Group>
+
+        <Form.Group as={Col}>
+          <Form.Control 
+            placeholder="Nome em Latim"
+            type='text' 
+            onChange={(event) => setFormState({
+              ...formState,
+              nameLAT: event.currentTarget?.value || "",
+            })}  
+            id="nameLAT" />
+        </Form.Group>
+      </Row>
+      <h2 className='subtitulo'>Outras características</h2>
+
+      <Row className="mb-3">
+        
+        <Form.Group as={Col}>
+          <Form.Label>Tamanho</Form.Label>
+          <Form.Control 
+            placeholder="Tamanho em CM"
+            type='number' 
+            onChange={(event) => setFormState({
+              ...formState,
+              size: event.currentTarget?.value || "",
+            })} 
+            id="size" />
+        </Form.Group>
+
+        <Form.Group as={Col}>
+          <Form.Label>Cor</Form.Label>
+          <Form.Control
+            placeholder="Cor" 
+            type='text'  
+            onChange={(event) => setFormState({
+              ...formState,
+              color: event.currentTarget?.value || "",
+            })} />
+        </Form.Group>
+
+        <Form.Group as={Col} type='select'>
+          <Form.Label>Gênero</Form.Label>
+          <Form.Control as="select"  
+            onChange={(event) => setFormState({
+              ...formState,
+              gender: event.target?.value || "",
+            })} >
+            <option>Selecione</option>
+            <option>Fêmea</option>
+            <option>Macho</option>
+          </Form.Control>
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group as={Col}>
+          <Form.Label>Família</Form.Label>
+          <Form.Control 
+            onChange={(event) => setFormState({
+            ...formState,
+            family: event.currentTarget?.value || "",
+            })} />
+        </Form.Group>
+
+        <Form.Group as={Col}>
+          <Form.Label>Habitat</Form.Label>
+          <Form.Control  onChange={(event) => setFormState({
+              ...formState,
+              habitat: event.currentTarget?.value || "",
+            })} />
+        </Form.Group>
+      </Row>
+
+      <Button variant="primary" type="submit">
+        Cadastrar
+      </Button>
+    </Form>
+  </Container>
+  </>
+  );
+}
+
+export default BirdRegister;
