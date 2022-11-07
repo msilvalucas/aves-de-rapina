@@ -44,14 +44,19 @@ public class BirdService {
 
     @Transactional(readOnly = true)
     public List<BirdDTO> findBird(String param){
-        List<Bird> list = repository.findBirdContainingIgnoreCase(param);
+        List<Bird> list = repository.findBirdContainingIsNotNull(param);
         
-        List<BirdDTO> listDTO = new ArrayList<>();
-        for(Bird bird : list){
-            listDTO.add(new BirdDTO(bird));
+        if(list.isEmpty()) {
+            throw new ResourceNotFoundException("Bird not found");
         }
 
-        return listDTO;
+        List<BirdDTO> listDTO = new ArrayList<>();
+            
+            for(Bird bird : list){
+                listDTO.add(new BirdDTO(bird));
+            }
+
+            return listDTO;
     }
 
     @Transactional
