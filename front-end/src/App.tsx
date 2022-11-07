@@ -1,11 +1,21 @@
 import React from "react";
-import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const App: React.FC = () => {
+import Cadastro from "./pages/Cadastro";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NaoEncontrado from "./pages/NaoEncontrado";
+
+const App = () => {
   return (
-    <>
-      <Home />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="cadastro" element={<Cadastro />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<NaoEncontrado />} />
+      </Routes>
+    </Router>
   );
 };
 
