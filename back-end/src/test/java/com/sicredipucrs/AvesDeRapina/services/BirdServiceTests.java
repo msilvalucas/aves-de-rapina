@@ -66,7 +66,7 @@ public class BirdServiceTests {
         doNothing().when(repository).deleteById(existingId);
         doThrow(ResourceNotFoundException.class).when(repository).deleteById(nonExistingId);
     }
-    
+
     @Test
     public void deleteShouldDoNothingWhenIdExists() {
         
@@ -76,5 +76,49 @@ public class BirdServiceTests {
         
         //Verifica se o método deleteById foi chamado
         verify(repository).deleteById(existingId);
+    }
+
+    @Test
+    public void findBirdWithNoParamsShouldReturnAllBirds() {
+        List<BirdDTO> result = service.findBird(null);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(list.size(), result.size());
+
+        verify(repository).findBirdContainingIsNotNull(any());
+    }
+
+    @Test
+    public void findBirdWithExistingParamsShouldReturnBirdsWithKeyWord() {
+        List<BirdDTO> result = service.findBird(existingParam);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(list.size(), result.size());
+
+        verify(repository).findBirdContainingIsNotNull(eq(existingParam));
+    }
+
+    @Test
+    public void findBirdWithNonExistingParamsShouldThrowResourceNotFoundException() {
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            service.findBird(nonExistingParam);
+        });
+
+        verify(repository).findBirdContainingIsNotNull(eq(nonExistingParam));
+    }
+
+    @Test
+    public void updateShouldReturnBirdDTOWhenIdExists(){
+        BirdDTO result = service.update(existingId, birdDTO);
+
+        Assertions.assertNotNull(result);
+    }
+
+    @Test
+    public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist(){
+        
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            service.update(nonExistingId, birdDTO);
+        });
     }
 }
