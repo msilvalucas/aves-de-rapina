@@ -62,7 +62,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    namePT: event.currentTarget?.value || "",
+                    namePT: event.target.value || "",
                   })
                 }
                 id="namePT"
@@ -76,7 +76,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    nameEN: event.currentTarget?.value || "",
+                    nameEN: event.target.value || "",
                   })
                 }
                 id="nameEN"
@@ -90,7 +90,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    nameLAT: event.currentTarget?.value || "",
+                    nameLAT: event.target.value || "",
                   })
                 }
                 id="nameLAT"
@@ -108,7 +108,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    size: event.currentTarget?.value || "",
+                    size: event.target.value || "",
                   })
                 }
                 id="size"
@@ -123,7 +123,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    color: event.currentTarget?.value || "",
+                    color: event.target.value || "",
                   })
                 }
               />
@@ -136,7 +136,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    gender: event.target?.value || "",
+                    gender: event.target.value || "",
                   })
                 }
               >
@@ -154,7 +154,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    family: event.currentTarget?.value || "",
+                    family: event.target.value || "",
                   })
                 }
               />
@@ -166,7 +166,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    habitat: event.currentTarget?.value || "",
+                    habitat: event.target.value || "",
                   })
                 }
               />

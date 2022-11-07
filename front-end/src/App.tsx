@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import Cadastro from "./pages/Cadastro";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NaoEncontrado from "./pages/NaoEncontrado";
+import Cadastro from "./Pages/Cadastro";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import NaoEncontrado from "./Pages/NaoEncontrado";
 
 const App = () => {
   return (
