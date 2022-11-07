@@ -35,6 +35,12 @@ public class BirdController {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BirdDTO> findById(@PathVariable Long id){
+        BirdDTO dto = service.findById(id);
+        return ResponseEntity.ok().body(dto);
+    }
+    
     @GetMapping("/search")
     public ResponseEntity<List<BirdDTO>> findBird(@RequestParam String param){
         List<BirdDTO> list = service.findBird(param);
