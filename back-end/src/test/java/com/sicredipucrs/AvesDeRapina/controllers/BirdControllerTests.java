@@ -80,13 +80,23 @@ public class BirdControllerTests {
     }
 
     @Test
-    public void findBirdWithParamsShouldReturnBirdsWithKeyWord() throws Exception {
+    public void findBirdWithExistingParamsShouldReturnBirdsWithKeyWord() throws Exception {
         
         ResultActions result = mockMvc
             .perform(get("/birds/search?param=" + existingParam)
             .accept(MediaType.APPLICATION_JSON));
 
             result.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void findBirdWithNonExistingParamsShouldReturnNotFound() throws Exception {
+        
+        ResultActions result = mockMvc
+            .perform(get("/birds/search?param=" + nonExistingParam)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -101,6 +111,15 @@ public class BirdControllerTests {
             .accept(MediaType.APPLICATION_JSON));
 
             result.andExpect(MockMvcResultMatchers.status().isCreated());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.nameEN").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.namePT").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.nameLAT").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.size").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.gender").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.color").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.family").exists());
+            result.andExpect(MockMvcResultMatchers.jsonPath("$.habitat").exists());
     }
 
     @Test
@@ -135,6 +154,26 @@ public class BirdControllerTests {
             .perform(put("/birds/{id}", nonExistingId)
             .content(jsonBody)
             .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    public void deleteShouldReturnNoContentWhenIdExists() throws Exception {
+        
+        ResultActions result = mockMvc
+            .perform(delete("/birds/{id}", existingId)
+            .accept(MediaType.APPLICATION_JSON));
+
+            result.andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() throws Exception {
+        
+        ResultActions result = mockMvc
+            .perform(delete("/birds/{id}", nonExistingId)
             .accept(MediaType.APPLICATION_JSON));
 
             result.andExpect(MockMvcResultMatchers.status().isNotFound());

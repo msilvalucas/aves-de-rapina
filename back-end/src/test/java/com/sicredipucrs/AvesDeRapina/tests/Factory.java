@@ -1,7 +1,9 @@
 package com.sicredipucrs.AvesDeRapina.tests;
 
 import com.sicredipucrs.AvesDeRapina.dto.BirdDTO;
+import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
 import com.sicredipucrs.AvesDeRapina.entities.Bird;
+import com.sicredipucrs.AvesDeRapina.entities.User;
 
 public class Factory {
     public static Bird createBird() {
@@ -21,5 +23,20 @@ public class Factory {
     public static BirdDTO createBirdDTO() {
         Bird bird = createBird();
         return new BirdDTO(bird);
+    }
+
+    public static User createUser() {
+        User user = new User();
+        user.setId(1L);
+        user.setName("Nome");
+        user.setEmail("email");
+        user.setPassword("senha");
+        user.setLogin(false);
+        return user;
+    }
+
+    public static UserDTO createUserDTO() {
+        User user = createUser();
+        return new UserDTO(user);
     }
 }
