@@ -2,6 +2,7 @@ package com.sicredipucrs.AvesDeRapina.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -43,11 +44,18 @@ public class BirdService {
     }
 
     @Transactional(readOnly = true)
-    public List<BirdDTO> findBird(String param){
-        List<Bird> list = repository.findBirdContainingIsNotNull(param);
+    public BirdDTO findById(Long id) {
+        Optional<Bird> obj = repository.findById(id);
+        Bird entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        return new BirdDTO(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BirdDTO> findBirds(String param){
+        List<Bird> list = repository.findBirdsContainingIsNotNull(param);
         
         if(list.isEmpty()) {
-            throw new ResourceNotFoundException("Bird not found");
+            throw new ResourceNotFoundException("Entity not found");
         }
 
         List<BirdDTO> listDTO = new ArrayList<>();

@@ -11,5 +11,5 @@ import com.sicredipucrs.AvesDeRapina.entities.Bird;
 @Repository
 public interface BirdRepository extends JpaRepository<Bird, Long>{
     @Query(value = "SELECT * FROM bird b WHERE b.namept ILIKE %?1% OR nameen ILIKE %?1% OR namelat ILIKE %?1% OR b.color ILIKE %?1%", nativeQuery = true)
-    List<Bird> findBirdContainingIsNotNull(String param);
+    List<Bird> findBirdsContainingIsNotNull(String param);
 }
