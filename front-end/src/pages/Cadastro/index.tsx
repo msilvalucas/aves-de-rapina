@@ -1,7 +1,8 @@
 import React from "react";
+import BirdRegister from "../../Components/BirdRegister/BirdRegister";
 
 const Cadastro = () => {
-  return <h1>Hello World!!!</h1>;
+  return <BirdRegister />;
 };
 
 export default Cadastro;

@@ -1,14 +1,9 @@
 import React from "react";
 
-import Container from "react-bootstrap/Container";
-import Nav from "../../Components/Nav";
+import Header from "../../Components/Header/Header";
 
 const Home = () => {
-  return (
-    <Container>
-      <Nav />
-    </Container>
-  );
+  return <Header />;
 };
 
 export default Home;
