@@ -42,8 +42,8 @@ public class BirdController {
     }
     
     @GetMapping("/search")
-    public ResponseEntity<List<BirdDTO>> findBird(@RequestParam String param){
-        List<BirdDTO> list = service.findBird(param);
+    public ResponseEntity<List<BirdDTO>> findBirds(@RequestParam String param){
+        List<BirdDTO> list = service.findBirds(param);
         return ResponseEntity.ok().body(list);
     }
 

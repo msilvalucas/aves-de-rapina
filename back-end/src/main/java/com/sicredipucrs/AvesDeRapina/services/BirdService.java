@@ -51,8 +51,8 @@ public class BirdService {
     }
 
     @Transactional(readOnly = true)
-    public List<BirdDTO> findBird(String param){
-        List<Bird> list = repository.findBirdContainingIsNotNull(param);
+    public List<BirdDTO> findBirds(String param){
+        List<Bird> list = repository.findBirdsContainingIsNotNull(param);
         
         if(list.isEmpty()) {
             throw new ResourceNotFoundException("Entity not found");

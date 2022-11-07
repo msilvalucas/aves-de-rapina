@@ -59,9 +59,11 @@ public class BirdControllerTests {
         list = new ArrayList<>(List.of(birdDTO));
 
         //Configuração do comportamento do mock
-        when(service.findBird(any())).thenReturn(list);
-        when(service.findBird(existingParam)).thenReturn(list);
-        when(service.findBird(nonExistingParam)).thenThrow(ResourceNotFoundException.class);
+        when(service.findById(existingId)).thenReturn(birdDTO);
+        when(service.findById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
+        when(service.findBirds(any())).thenReturn(list);
+        when(service.findBirds(existingParam)).thenReturn(list);
+        when(service.findBirds(nonExistingParam)).thenThrow(ResourceNotFoundException.class);
         when(service.insert(any())).thenReturn(birdDTO);
         when(service.update(eq(existingId), any())).thenReturn(birdDTO);
         when(service.update(eq(nonExistingId), any())).thenThrow(ResourceNotFoundException.class);
@@ -70,7 +72,25 @@ public class BirdControllerTests {
     }
 
     @Test
-    public void findBirdWithNoParamsShouldReturnAllBirds() throws Exception {
+    public void findByIdShouldReturnBirdDTOWhenIdExists() throws Exception {
+        ResultActions result = mockMvc.perform(get("/birds/{id}", existingId)
+                .accept(MediaType.APPLICATION_JSON));
+
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(existingId));
+    }
+
+    @Test
+    public void findByIdShouldReturnNotFoundWhenIdDoesNotExist() throws Exception {
+        ResultActions result = mockMvc.perform(get("/birds/{id}", nonExistingId)
+                .accept(MediaType.APPLICATION_JSON));
+
+        result.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+    
+    @Test
+    public void findBirdsWithNoParamsShouldReturnAllBirds() throws Exception {
         
         ResultActions result = mockMvc
             .perform(get("/birds/search?param=")
@@ -80,7 +100,7 @@ public class BirdControllerTests {
     }
 
     @Test
-    public void findBirdWithExistingParamsShouldReturnBirdsWithKeyWord() throws Exception {
+    public void findBirdsWithExistingParamsShouldReturnBirdsWithKeyWord() throws Exception {
         
         ResultActions result = mockMvc
             .perform(get("/birds/search?param=" + existingParam)
@@ -90,7 +110,7 @@ public class BirdControllerTests {
     }
 
     @Test
-    public void findBirdWithNonExistingParamsShouldReturnNotFound() throws Exception {
+    public void findBirdsWithNonExistingParamsShouldReturnNotFound() throws Exception {
         
         ResultActions result = mockMvc
             .perform(get("/birds/search?param=" + nonExistingParam)

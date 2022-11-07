@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -57,9 +58,11 @@ public class BirdServiceTests {
         list = new ArrayList<>(List.of(bird));
 
         //Configuração do comportamento do mock
-        when(repository.findBirdContainingIsNotNull(any())).thenReturn(list);
-        when(repository.findBirdContainingIsNotNull(existingParam)).thenReturn(list);
-        when(repository.findBirdContainingIsNotNull(nonExistingParam)).thenThrow(ResourceNotFoundException.class);
+        when(repository.findById(existingId)).thenReturn(Optional.of(bird));
+        when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
+        when(repository.findBirdsContainingIsNotNull(any())).thenReturn(list);
+        when(repository.findBirdsContainingIsNotNull(existingParam)).thenReturn(list);
+        when(repository.findBirdsContainingIsNotNull(nonExistingParam)).thenThrow(ResourceNotFoundException.class);
         when(repository.save(any())).thenReturn(bird);
         when(repository.getReferenceById(existingId)).thenReturn(bird);
         when(repository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
@@ -79,32 +82,49 @@ public class BirdServiceTests {
     }
 
     @Test
-    public void findBirdWithNoParamsShouldReturnAllBirds() {
-        List<BirdDTO> result = service.findBird(null);
+    public void findByIdShouldReturnBirdDTOWhenIdExists(){
+        BirdDTO result = service.findById(existingId);
 
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(list.size(), result.size());
-
-        verify(repository).findBirdContainingIsNotNull(any());
+        verify(repository).findById(existingId);
     }
 
     @Test
-    public void findBirdWithExistingParamsShouldReturnBirdsWithKeyWord() {
-        List<BirdDTO> result = service.findBird(existingParam);
-
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(list.size(), result.size());
-
-        verify(repository).findBirdContainingIsNotNull(eq(existingParam));
-    }
-
-    @Test
-    public void findBirdWithNonExistingParamsShouldThrowResourceNotFoundException() {
+    public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist(){
         Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            service.findBird(nonExistingParam);
+            service.findById(nonExistingId);
         });
 
-        verify(repository).findBirdContainingIsNotNull(eq(nonExistingParam));
+        verify(repository).findById(nonExistingId);
+    }
+
+    @Test
+    public void findBirdsWithNoParamsShouldReturnAllBirds() {
+        List<BirdDTO> result = service.findBirds(null);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(list.size(), result.size());
+
+        verify(repository).findBirdsContainingIsNotNull(any());
+    }
+
+    @Test
+    public void findBirdsWithExistingParamsShouldReturnBirdsWithKeyWord() {
+        List<BirdDTO> result = service.findBirds(existingParam);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(list.size(), result.size());
+
+        verify(repository).findBirdsContainingIsNotNull(eq(existingParam));
+    }
+
+    @Test
+    public void findBirdsWithNonExistingParamsShouldThrowResourceNotFoundException() {
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            service.findBirds(nonExistingParam);
+        });
+
+        verify(repository).findBirdsContainingIsNotNull(eq(nonExistingParam));
     }
 
     @Test
