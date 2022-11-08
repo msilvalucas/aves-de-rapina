@@ -1,6 +1,7 @@
 package com.sicredipucrs.AvesDeRapina.services;
 
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
+import com.sicredipucrs.AvesDeRapina.dto.UserInsertDTO;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.repositories.UserRepository;
 import com.sicredipucrs.AvesDeRapina.services.exceptions.DatabaseException;
@@ -8,6 +9,7 @@ import com.sicredipucrs.AvesDeRapina.services.exceptions.ResourceNotFoundExcepti
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +21,18 @@ import java.util.List;
 public class UserService {
 
     @Autowired
+    //Implementa o password encoder do Spring Security
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Transactional
-    public UserDTO insert(UserDTO userDto){
+    public UserDTO insert(UserInsertDTO userDto){
         User user = new User();
         copyDtoToEntity(userDto, user);
+        //Encripta a senha
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user = userRepository.save(user);
         return new UserDTO(user);
     }
