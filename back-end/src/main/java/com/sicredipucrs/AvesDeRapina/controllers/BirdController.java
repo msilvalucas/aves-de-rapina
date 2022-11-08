@@ -3,6 +3,8 @@ package com.sicredipucrs.AvesDeRapina.controllers;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +29,7 @@ public class BirdController {
     private BirdService service;
 
     @PostMapping
-    public ResponseEntity<BirdDTO> insert(@RequestBody BirdDTO dto){
+    public ResponseEntity<BirdDTO> insert(@Valid @RequestBody BirdDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(dto.getId()).toUri();
@@ -48,7 +50,7 @@ public class BirdController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BirdDTO> update(@PathVariable Long id, @RequestBody BirdDTO dto){
+    public ResponseEntity<BirdDTO> update(@Valid @PathVariable Long id, @RequestBody BirdDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
