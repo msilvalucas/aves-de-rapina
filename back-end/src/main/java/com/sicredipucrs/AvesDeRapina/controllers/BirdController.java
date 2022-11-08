@@ -22,7 +22,7 @@ public class BirdController {
     private BirdService service;
 
     @PostMapping
-    public ResponseEntity<BirdDTO> insert(@RequestBody BirdDTO dto){
+    public ResponseEntity<BirdDTO> insert(@Valid @RequestBody BirdDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(dto.getId()).toUri();
