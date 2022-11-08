@@ -1,6 +1,7 @@
 package com.sicredipucrs.AvesDeRapina.controllers;
 
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
+import com.sicredipucrs.AvesDeRapina.dto.UserInsertDTO;
 import com.sicredipucrs.AvesDeRapina.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDTO> insert(@RequestBody UserDTO userDto){
-        userDto = userService.insert(userDto);
+    public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO userInsertDto){
+        UserDTO newDto = userService.insert(userInsertDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(userDto.getId()).toUri();
+                .buildAndExpand(userInsertDto.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(userDto);
+        return ResponseEntity.created(uri).body(newDto);
     }
 
     @GetMapping
