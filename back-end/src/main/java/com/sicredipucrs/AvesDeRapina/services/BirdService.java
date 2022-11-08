@@ -43,6 +43,18 @@ public class BirdService {
     }
 
     @Transactional(readOnly = true)
+    public List<BirdDTO> findAll(){
+        List<Bird> list = repository.findAll();
+
+        List<BirdDTO> listDTO = new ArrayList<>();
+        for(Bird bird : list){
+            listDTO.add(new BirdDTO(bird));
+        }
+
+        return listDTO;
+    }
+
+    @Transactional(readOnly = true)
     public List<BirdDTO> findBird(String param){
         List<Bird> list = repository.findBirdContainingIsNotNull(param);
         
