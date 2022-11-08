@@ -76,7 +76,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(userDTO);
 
         ResultActions result = mockMvc
-                .perform(post("/user")
+                .perform(post("/users")
                         .content(jsonBody)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON));
@@ -89,7 +89,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(users);
 
         ResultActions result = mockMvc
-                .perform(get("/user")
+                .perform(get("/users")
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isOk())
@@ -101,7 +101,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(userDTO);
 
         ResultActions result = mockMvc
-                .perform(get("/user/id/{id}", existingId)
+                .perform(get("/users/id/{id}", existingId)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isOk())
@@ -111,7 +111,7 @@ class UserControllerTest {
     @Test
     void findByIdWithNonExistingIdShouldThrowResourceNotFoundException() throws Exception {
         ResultActions result = mockMvc
-                .perform(get("/user/id/{id}", nonExistingId)
+                .perform(get("/users/id/{id}", nonExistingId)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -122,7 +122,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(userDTO);
 
         ResultActions result = mockMvc
-                .perform(get("/user/email/{email}", existingEmail)
+                .perform(get("/users/email/{email}", existingEmail)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isOk())
@@ -132,7 +132,7 @@ class UserControllerTest {
     @Test
     void findByIdWithNonExistingEmailShouldThrowResourceNotFoundException() throws Exception {
         ResultActions result = mockMvc
-                .perform(get("/user/email/{email}", nonExistingEmail)
+                .perform(get("/users/email/{email}", nonExistingEmail)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -143,7 +143,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(userDTO);
 
         ResultActions result = mockMvc
-                .perform(put("/user/{id}", existingId)
+                .perform(put("/users/{id}", existingId)
                         .content(jsonBody)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON));
@@ -158,7 +158,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(userDTO);
 
         ResultActions result = mockMvc
-                .perform(put("/user/{id}", nonExistingId)
+                .perform(put("/users/{id}", nonExistingId)
                         .content(jsonBody)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON));
@@ -169,7 +169,7 @@ class UserControllerTest {
     @Test
     void deleteWithExistentIdShouldReturnNoContentBuild() throws Exception {
         ResultActions result = mockMvc
-                .perform(delete("/user/{id}", existingId)
+                .perform(delete("/users/{id}", existingId)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNoContent());
@@ -178,7 +178,7 @@ class UserControllerTest {
     @Test
     void deleteWithNonExistentIdShouldThrowResourceNotFoundException() throws Exception {
         ResultActions result = mockMvc
-                .perform(delete("/user/{id}", nonExistingId)
+                .perform(delete("/users/{id}", nonExistingId)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -190,7 +190,7 @@ class UserControllerTest {
         String jsonBody = objectMapper.writeValueAsString(userDTO);
 
         ResultActions result = mockMvc
-                .perform(put("/user/login/{email}/{senha}", existingEmail, validPassword)
+                .perform(put("/users/login/{email}/{senha}", existingEmail, validPassword)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isOk())
@@ -201,7 +201,7 @@ class UserControllerTest {
     @Test
     void loginWithInvalidPasswordShouldThrowResourceNotFoundException() throws Exception {
         ResultActions result = mockMvc
-                .perform(put("/user/login/{email}/{senha}", existingEmail, invalidPassword)
+                .perform(put("/users/login/{email}/{senha}", existingEmail, invalidPassword)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -210,7 +210,7 @@ class UserControllerTest {
     @Test
     void logoutShouldReturnNoContentBuild() throws Exception {
         ResultActions result = mockMvc
-                .perform(put("/user/logout/{email}", existingEmail)
+                .perform(put("/users/logout/{email}", existingEmail)
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNoContent());
