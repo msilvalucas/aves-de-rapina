@@ -70,6 +70,9 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new ResourceNotFoundException("Email " + email + " not found ");
+        }
         return new UserDTO(user);
     }
 

@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Axios from "axios";
+import './BirdRegister.css'
+import Header from "../Header/Header";
 
 interface IBirdFormState {
   namePT: string;
@@ -50,14 +52,14 @@ const BirdRegister = () => {
 
   return (
     <>
-      <Container>
+    
+      <Container className="form-container">
         <Form onSubmit={handleSubmit}>
           <h1>Cadastro de Aves</h1>
-          <h2 className="subtitulo">Nomes</h2>
           <Row className="mb-3">
             <Form.Group as={Col}>
+            <Form.Label className="form-label">Nome em Português</Form.Label>
               <Form.Control
-                placeholder="Nome em Português"
                 type="text"
                 onChange={(event) =>
                   setFormState({
@@ -70,8 +72,8 @@ const BirdRegister = () => {
             </Form.Group>
 
             <Form.Group as={Col}>
+            <Form.Label className="form-label">Nome em Inglês</Form.Label>
               <Form.Control
-                placeholder="Nome em Inglês"
                 type="text"
                 onChange={(event) =>
                   setFormState({
@@ -84,8 +86,8 @@ const BirdRegister = () => {
             </Form.Group>
 
             <Form.Group as={Col}>
+            <Form.Label className="form-label">Nome em Latim</Form.Label>
               <Form.Control
-                placeholder="Nome em Latim"
                 type="text"
                 onChange={(event) =>
                   setFormState({
@@ -97,11 +99,11 @@ const BirdRegister = () => {
               />
             </Form.Group>
           </Row>
-          <h2 className="subtitulo">Outras características</h2>
+          <h2 className="subtitulo">Características</h2>
 
           <Row className="mb-3">
             <Form.Group as={Col}>
-              <Form.Label>Tamanho</Form.Label>
+              <Form.Label className="form-label">Tamanho</Form.Label>
               <Form.Control
                 placeholder="Tamanho em CM"
                 type="number"
@@ -179,7 +181,7 @@ const BirdRegister = () => {
         </Form>
       </Container>
     </>
-  );
-};
+  )
+}
 
 export default BirdRegister;

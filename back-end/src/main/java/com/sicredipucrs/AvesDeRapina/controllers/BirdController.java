@@ -3,6 +3,8 @@ package com.sicredipucrs.AvesDeRapina.controllers;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +35,20 @@ public class BirdController {
         return ResponseEntity.ok().body(service.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BirdDTO> findById(@PathVariable Long id){
+        BirdDTO dto = service.findById(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
     @GetMapping("/search")
-    public ResponseEntity<List<BirdDTO>> findBird(@RequestParam String param){
-        List<BirdDTO> list = service.findBird(param);
+    public ResponseEntity<List<BirdDTO>> findBirds(@RequestParam String param){
+        List<BirdDTO> list = service.findBirds(param);
         return ResponseEntity.ok().body(list);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BirdDTO> update(@PathVariable Long id, @RequestBody BirdDTO dto){
+    public ResponseEntity<BirdDTO> update(@Valid @PathVariable Long id, @RequestBody BirdDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
