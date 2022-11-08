@@ -24,6 +24,7 @@ public class BirdDTO {
 
     @Positive(message = "Size cannot be negative")
     private Double size;
+    @Size(min = 1, max = 1, message = "Size unit must contain 1 character (M or F)")
     private String gender;
     @NotBlank(message = "Color is mandatory")
     private String color;
