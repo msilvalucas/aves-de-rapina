@@ -4,10 +4,10 @@ import Menu from "../Menu/Menu";
 
 const Header = () => {
   return (
-    <header className="container">
+    <header>
       <Menu />
     </header>
-  );
-};
+  )
+}
 
 export default Header;

@@ -7,15 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sicredipucrs.AvesDeRapina.dto.BirdDTO;
@@ -23,13 +15,14 @@ import com.sicredipucrs.AvesDeRapina.services.BirdService;
 
 @RestController
 @RequestMapping("/birds")
+@CrossOrigin(origins = "*")
 public class BirdController {
 
     @Autowired
     private BirdService service;
 
     @PostMapping
-    public ResponseEntity<BirdDTO> insert(@Valid @RequestBody BirdDTO dto){
+    public ResponseEntity<BirdDTO> insert(@RequestBody BirdDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(dto.getId()).toUri();
@@ -37,12 +30,17 @@ public class BirdController {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @GetMapping
+    public ResponseEntity<List<BirdDTO>> findAll() {
+        return ResponseEntity.ok().body(service.findAll());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<BirdDTO> findById(@PathVariable Long id){
         BirdDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
-    
+
     @GetMapping("/search")
     public ResponseEntity<List<BirdDTO>> findBirds(@RequestParam String param){
         List<BirdDTO> list = service.findBirds(param);

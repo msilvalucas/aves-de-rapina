@@ -12,7 +12,7 @@ const logo = require("./../../assets/logo.png");
 const Menu = () => {
   return (
     <>
-      <Navbar className="menu navbar navbar-expand-lg fixed-top">
+      <Navbar className="menu navbar navbar-expand-lg">
         <Container>
           <Navbar.Brand href="#home">
             <img src={logo} width={75} alt="Logo" />

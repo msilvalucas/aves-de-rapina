@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import Cadastro from "./Pages/Cadastro";
+import Catalogo from "./Pages/Catalogo";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import NaoEncontrado from "./Pages/NaoEncontrado";
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="cadastro" element={<Cadastro />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NaoEncontrado />} />
+        <Route path="catalogo" element={<Catalogo />} />
       </Routes>
     </Router>
   );
