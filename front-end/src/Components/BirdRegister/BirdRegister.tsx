@@ -143,8 +143,8 @@ const BirdRegister = () => {
                 }
               >
                 <option>Selecione</option>
-                <option>Fêmea</option>
-                <option>Macho</option>
+                <option>F</option>
+                <option>M</option>
               </Form.Control>
             </Form.Group>
           </Row>
