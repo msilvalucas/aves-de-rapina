@@ -1,10 +1,21 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
+const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    margin: "10vh auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+};
+
 const Register = () => {
   return (
-    <div className="container">
-      <div>
-        <div className="card mb-3">
+    <div style={styles.container}>
+      <div className="col-6">
+        <div className="card  mb-3">
           <h3 className="card-header">Cadastro de Usuário</h3>
           <div className="card-body">
             <div className="row">
@@ -56,12 +67,16 @@ const Register = () => {
                       />
                     </div>
 
-                    <button type="button" className="btn btn-success">
-                      Salvar
-                    </button>
-                    <button type="button" className="btn btn-danger">
-                      Voltar
-                    </button>
+                    <Link to="/login">
+                      <button type="button" className="btn ml-1 btn-success">
+                        Salvar
+                      </button>
+                    </Link>
+                    <Link to="/login">
+                      <button type="button" className="btn ml-1 btn-danger">
+                        Voltar
+                      </button>
+                    </Link>
                   </fieldset>
                 </form>
               </div>

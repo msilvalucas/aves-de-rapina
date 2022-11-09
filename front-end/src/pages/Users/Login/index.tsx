@@ -1,5 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+
+import { Link } from "react-router-dom";
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
@@ -41,12 +42,16 @@ const Login = () => {
                       />
                     </div>
 
-                    <button type="button" className="btn btn-success mr-1">
-                      Entrar
-                    </button>
-                    <button type="button" className="btn btn-danger ">
-                      Link
-                    </button>
+                    <Link to="/login">
+                      <button type="button" className="btn ml-1 btn-success">
+                        Entrar
+                      </button>
+                    </Link>
+                    <Link to="/register">
+                      <button type="button" className="btn ml-1 btn-danger">
+                        Criar Conta
+                      </button>
+                    </Link>
                   </fieldset>
                 </form>
               </div>
