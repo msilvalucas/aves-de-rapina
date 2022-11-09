@@ -30,6 +30,9 @@ const Menu = () => {
             <Nav.Link href="#cadastro">
               <Link to="cadastro">Cadastre-se</Link>
             </Nav.Link>
+            <Nav.Link href="#catalogo">
+              <Link to="catalogo">Catálogo</Link>
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>

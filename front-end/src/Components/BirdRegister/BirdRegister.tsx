@@ -5,8 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Axios from "axios";
-import './BirdRegister.css'
-import Header from "../Header/Header";
+import "./BirdRegister.css";
 
 interface IBirdFormState {
   namePT: string;
@@ -52,13 +51,12 @@ const BirdRegister = () => {
 
   return (
     <>
-    
       <Container className="form-container">
         <Form onSubmit={handleSubmit}>
           <h1>Cadastro de Aves</h1>
           <Row className="mb-3">
             <Form.Group as={Col}>
-            <Form.Label className="form-label">Nome em Português</Form.Label>
+              <Form.Label className="form-label">Nome em Português</Form.Label>
               <Form.Control
                 type="text"
                 onChange={(event) =>
@@ -72,7 +70,7 @@ const BirdRegister = () => {
             </Form.Group>
 
             <Form.Group as={Col}>
-            <Form.Label className="form-label">Nome em Inglês</Form.Label>
+              <Form.Label className="form-label">Nome em Inglês</Form.Label>
               <Form.Control
                 type="text"
                 onChange={(event) =>
@@ -86,7 +84,7 @@ const BirdRegister = () => {
             </Form.Group>
 
             <Form.Group as={Col}>
-            <Form.Label className="form-label">Nome em Latim</Form.Label>
+              <Form.Label className="form-label">Nome em Latim</Form.Label>
               <Form.Control
                 type="text"
                 onChange={(event) =>
@@ -181,7 +179,7 @@ const BirdRegister = () => {
         </Form>
       </Container>
     </>
-  )
-}
+  );
+};
 
 export default BirdRegister;

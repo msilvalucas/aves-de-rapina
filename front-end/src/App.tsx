@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import Cadastro from "./Pages/Cadastro";
-import Catalogo from "./Pages/Catalogo";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import NaoEncontrado from "./Pages/NaoEncontrado";
+import Cadastro from "./pages/Cadastro";
+import Catalogo from "./pages/Catalogo";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NaoEncontrado from "./pages/NaoEncontrado";
 
 const App = () => {
   return (
