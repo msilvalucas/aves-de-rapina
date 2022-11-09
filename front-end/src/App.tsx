@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import Cadastro from "./pages/Cadastro";
+import Cadastro from "./pages/Aves";
 import Catalogo from "./pages/Catalogo";
 import Home from "./pages/Home";
 import Login from "./pages/Login";

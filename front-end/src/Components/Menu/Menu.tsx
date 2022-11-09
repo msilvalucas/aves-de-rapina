@@ -22,16 +22,16 @@ const Menu = () => {
               <Link to="/">Home</Link>
             </Nav.Link>
             <Nav.Link href="#users">
-              <Link to="usuarios">Usuários</Link>
+              <Link to="usuarios">Aves</Link>
             </Nav.Link>
             <Nav.Link href="#login">
-              <Link to="login">Login</Link>
-            </Nav.Link>
-            <Nav.Link href="#cadastro">
-              <Link to="cadastro">Cadastre-se</Link>
+              <Link to="login">Avistamentos</Link>
             </Nav.Link>
             <Nav.Link href="#catalogo">
               <Link to="catalogo">Catálogo</Link>
+            </Nav.Link>
+            <Nav.Link className="last" href="#logout">
+              <Link to="/login">Sair</Link>
             </Nav.Link>
           </Nav>
         </Container>
