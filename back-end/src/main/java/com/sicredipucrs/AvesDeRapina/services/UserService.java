@@ -98,7 +98,7 @@ public class UserService {
     public UserDTO loginUser(String email, String password) {
         try{
             User user = userRepository.findByEmail(email);
-            if (user.getPassword().equals(password)) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
                 user.setLogin(true);
                 user = userRepository.save(user);
             }
