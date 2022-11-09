@@ -58,9 +58,9 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/login/{email}/{password}")
-    public ResponseEntity<UserDTO> login(@PathVariable String email, @PathVariable String password) {
-        return ResponseEntity.ok().body(userService.loginUser(email, password));
+    @PutMapping(value = "/login")
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDto) {
+        return ResponseEntity.ok().body(userService.loginUser(userDto.getEmail(), userDto.getPassword()));
     }
 
     @PutMapping(value = "/logout/{email}")
