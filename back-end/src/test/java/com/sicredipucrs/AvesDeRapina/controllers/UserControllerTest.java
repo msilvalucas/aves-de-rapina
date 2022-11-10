@@ -8,6 +8,7 @@ import com.sicredipucrs.AvesDeRapina.tests.Factory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -23,6 +24,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
+@AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(UserController.class)
 class UserControllerTest {
 
@@ -39,8 +41,6 @@ class UserControllerTest {
         private Long nonExistingId;
         private String existingEmail;
         private String nonExistingEmail;
-        private String validPassword;
-        private String invalidPassword;
         private UserDTO userDTO;
         private List<UserDTO> users;
 
@@ -50,9 +50,7 @@ class UserControllerTest {
                 nonExistingId = 2L;
                 existingEmail = "email";
                 nonExistingEmail = "emailIncorreto";
-                validPassword = "senha";
-                invalidPassword = "senhaIncoreta";
-
+                
                 userDTO = Factory.createUserDTO();
                 users = new ArrayList<>(List.of(userDTO));
 
@@ -180,36 +178,4 @@ class UserControllerTest {
 
                 result.andExpect(MockMvcResultMatchers.status().isNotFound());
         }
-
-        // @Test
-        // void loginWithValidPasswordShouldReturnUserDTO() throws Exception {
-        //         userDTO.setLogin(true);
-        //         String jsonBody = objectMapper.writeValueAsString(userDTO);
-
-        //         ResultActions result = mockMvc
-        //                         .perform(put("/users/login/{email}/{senha}", existingEmail, validPassword)
-        //                                         .accept(MediaType.APPLICATION_JSON));
-
-        //         result.andExpect(MockMvcResultMatchers.status().isOk())
-        //                         .andExpect(MockMvcResultMatchers.content().json(jsonBody));
-
-        // }
-
-        // @Test
-        // void loginWithInvalidPasswordShouldThrowResourceNotFoundException() throws Exception {
-        //         ResultActions result = mockMvc
-        //                         .perform(put("/users/login/{email}/{senha}", existingEmail, invalidPassword)
-        //                                         .accept(MediaType.APPLICATION_JSON));
-
-        //         result.andExpect(MockMvcResultMatchers.status().isNotFound());
-        // }
-
-        // @Test
-        // void logoutShouldReturnNoContentBuild() throws Exception {
-        //         ResultActions result = mockMvc
-        //                         .perform(put("/users/logout/{email}", existingEmail)
-        //                                         .accept(MediaType.APPLICATION_JSON));
-
-        //         result.andExpect(MockMvcResultMatchers.status().isNoContent());
-        // }
 }

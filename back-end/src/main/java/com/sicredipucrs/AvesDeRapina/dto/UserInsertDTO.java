@@ -1,7 +1,5 @@
 package com.sicredipucrs.AvesDeRapina.dto;
 
-import com.sicredipucrs.AvesDeRapina.entities.User;
-
 public class UserInsertDTO extends UserDTO{
     private String password;
 

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
-import com.sicredipucrs.AvesDeRapina.dto.UserInsertDTO;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.repositories.UserRepository;
 import com.sicredipucrs.AvesDeRapina.services.exceptions.ResourceNotFoundException;
@@ -19,7 +18,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -35,8 +33,6 @@ class UserServiceTest {
     private Long nonExistingId;
     private String existingEmail;
     private String nonExistingEmail;
-    private String validPassword;
-    private String invalidPassword;
     private UserDTO userDTO;
 
     private User user;
@@ -49,9 +45,6 @@ class UserServiceTest {
         nonExistingId = 2L;
         existingEmail = "email";
         nonExistingEmail = "emailIncorreto";
-        validPassword = "senha";
-        invalidPassword = "senhaIncoreta";
-
         userDTO = Factory.createUserDTO();
         user = Factory.createUser();
 
@@ -69,14 +62,6 @@ class UserServiceTest {
         doNothing().when(userRepository).deleteById(existingId);
         doThrow(ResourceNotFoundException.class).when(userRepository).deleteById(nonExistingId);
     }
-
-    //TO FIX
-    // @Test
-    // public void insertUserShouldReturnUserDTO() {
-    //     UserDTO aux = userService.insert(userInsertDTO);
-
-    //     Assertions.assertEquals(aux, userDTO);
-    // }
 
     @Test
     public void updateShouldReturnUserDTOWhenIdExists(){
@@ -140,14 +125,6 @@ class UserServiceTest {
 
         Assertions.assertEquals(usersDTO, aux);
     }
-
-    // @Test
-    // public void loginShouldReturnUserDTOWhenEmailAndPasswordIsValid() {
-    //     UserDTO aux = userService.loginUser(existingEmail, validPassword);
-    //     userDTO.setLogin(true);
-
-    //     Assertions.assertEquals(userDTO, aux);
-    // }
 }
 
 

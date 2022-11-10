@@ -1,6 +1,5 @@
 package com.sicredipucrs.AvesDeRapina.repositories;
 
-import com.sicredipucrs.AvesDeRapina.entities.Bird;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.tests.Factory;
 import org.junit.jupiter.api.BeforeEach;
