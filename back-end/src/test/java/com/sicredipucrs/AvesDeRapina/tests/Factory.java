@@ -2,6 +2,7 @@ package com.sicredipucrs.AvesDeRapina.tests;
 
 import com.sicredipucrs.AvesDeRapina.dto.BirdDTO;
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
+import com.sicredipucrs.AvesDeRapina.dto.UserInsertDTO;
 import com.sicredipucrs.AvesDeRapina.entities.Bird;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 
