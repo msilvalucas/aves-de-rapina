@@ -4,8 +4,23 @@ insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) 
 insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Azul', 'Anatidae', 'F', 'Selva', 'Blue-winged Teal', 'Spatula discors', 'Pato', 0.30);
 insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Marrom', 'Anatidae', 'M', 'Selva', 'Northern Shoveler', 'Spatula clypeata', 'Pato', 0.30);
 
-insert into users(email, login, name, password) values ('isadora@gmail.com', false, 'Isadora Hoelscher', '$2a$10$hNtPCTSZC.U2gTAqoAc8xOmFpZAizTQGbyVV.ds.xMPqQ7KIkaHES');
-insert into users(email, login, name, password) values ('lucasgomes@gmail.com', false, 'Lucas Gomes', '$2a$10$5z2PXlHE2BjZwlpnE2OQOu9pPwlUMkzUg3r/UtRHxZi9nN//L/vIO');
-insert into users(email, login, name, password) values ('dienifer@gmail.com', false, 'Dienifer Kwi', '$2a$10$1TYl6dusHcvBTVfYCTXYK.38AAtdzibIXAxC7Dej8Vw.sCTt8F0si');
-insert into users(email, login, name, password) values ('lucaspedroso@gmail.com', false, 'Lucas Eduardo Pedroso', '$2a$10$lJrYjnSHwVKpmvqUJS1lc.wUsvugzJSznVE5aLyu7btp/GTINIAJa');
-insert into users(email, login, name, password) values ('michael@gmail.com', false, 'Michael Mora', '$2a$10$fA5bFz9scuHzfYEK8C8jte4rnLKospiQPYe0HP17mCm9qeBOlhfuy');
+
+-- Senha: 1234
+insert into users(email, name, password) values ('isadora@gmail.com',  'Isadora Hoelscher', '$2a$10$NQzss5cI4Fn8e5pF4MnbL.C3sfRJHDZCOk2eRc/uVsGgw6cPjdslG');
+-- Senha: 5678
+insert into users(email, name, password) values ('lucasgomes@gmail.com', 'Lucas Gomes', '$2a$10$8a5tjnoCQeRvleiSiwy4Zeoda33M3LFXCVv.Y0tFHAO5eIiDVqIey');
+-- Senha: 9101112
+insert into users(email, name, password) values ('dienifer@gmail.com', 'Dienifer Kwi', '$2a$10$PY6nZdCiCmryHjrBkIGHqe1A5P9UXHkZD3ctegspP1KRScw0ssfHO');
+-- Senha: 13141516
+insert into users(email, name, password) values ('lucaspedroso@gmail.com', 'Lucas Eduardo Pedroso', '$2a$10$dFih0DarK/.A1Yxl3mdftOefVKcKETU5KoSVzVsHCRuUp1rlQdiFO');
+-- Senha: 17181920
+insert into users(email, name, password) values ('michael@gmail.com', 'Michael Mora', '$2a$10$Lk025U/n5rcVfegMgDNCJuZHqxCsjJ2Mk5qIVUPpLvs0p.Sa1fVlS');.
+
+insert into tb_role(authority) values ('ROLE_ADMIN');
+insert into tb_role(authority) values ('ROLE_USER');
+
+insert into tb_user_role(user_id, role_id) values (1, 1);
+insert into tb_user_role(user_id, role_id) values (2, 2);
+insert into tb_user_role(user_id, role_id) values (3, 1);
+insert into tb_user_role(user_id, role_id) values (4, 2);
+insert into tb_user_role(user_id, role_id) values (5, 2);
