@@ -25,6 +25,7 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService{
+    
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
     
     @Autowired
@@ -48,7 +49,6 @@ public class UserService implements UserDetailsService{
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
-        user.setLogin(userDto.getLogin());
     }
 
     @Transactional
@@ -99,29 +99,6 @@ public class UserService implements UserDetailsService{
             usersDTO.add(new UserDTO(user));
         }
         return usersDTO;
-    }
-
-    @Transactional
-    public UserDTO loginUser(String email, String password) {
-        try{
-            User user = userRepository.findByEmail(email);
-            if (passwordEncoder.matches(password, user.getPassword())) {
-                user.setLogin(true);
-                user = userRepository.save(user);
-            }
-            return new UserDTO(user);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Email ou senha inválido");
-        }
-    }
-
-    @Transactional
-    public void logoutUser(String email) {
-        User user = userRepository.findByEmail(email);
-        if(user.getLogin()) {
-            user.setLogin(false);
-            user = userRepository.save(user);
-        }
     }
 
     @Override

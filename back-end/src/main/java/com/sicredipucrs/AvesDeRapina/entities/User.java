@@ -14,13 +14,14 @@ import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,20 +30,16 @@ public class User implements UserDetails{
     private String name;
 
     @Column(unique = true)
-    private  String email;
+    private String email;
 
     private String password;
 
-    private Boolean login = false;
-
-     //fetch garante que os dados de perfis (roles) serão carregados junto com o usuário 
-     @ManyToMany(fetch = FetchType.EAGER)
-     @JoinTable(
-         name = "tb_user_role",
-         joinColumns = @JoinColumn(name = "user_id"),
-         inverseJoinColumns = @JoinColumn(name = "role_id"))
-         //Não permite elementos repetidos
-         private Set<Role> roles = new HashSet<>();
+    // fetch garante que os dados de perfis (roles) serão carregados junto com o
+    // usuário
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    // Não permite elementos repetidos
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,4 +72,3 @@ public class User implements UserDetails{
         return true;
     }
 }
-

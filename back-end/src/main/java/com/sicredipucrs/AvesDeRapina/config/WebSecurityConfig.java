@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 
     // Checa se o usuário existe e se a senha está correta
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
+    public void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
     }

@@ -57,15 +57,4 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-    @PutMapping(value = "/login")
-    public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDto) {
-        return ResponseEntity.ok().body(userService.loginUser(userDto.getEmail(), userDto.getPassword()));
-    }
-
-    @PutMapping(value = "/logout/{email}")
-    public ResponseEntity<UserDTO> logout(@PathVariable String email) {
-        userService.logoutUser(email);
-        return ResponseEntity.noContent().build();
-    }
 }
