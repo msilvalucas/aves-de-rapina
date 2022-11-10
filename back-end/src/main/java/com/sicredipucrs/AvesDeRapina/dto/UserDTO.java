@@ -19,14 +19,11 @@ public class UserDTO {
     private String email;
     @NotBlank(message = "Password is mandatory")
     private String password;
-    @NotBlank(message = "Login is mandatory")
-    private Boolean login = false;
 
     public UserDTO(User user){
         id = user.getId();
         name = user.getName();
         email = user.getEmail();
         password = user.getPassword();
-        login = user.getLogin();
     }
 }

@@ -141,13 +141,13 @@ class UserServiceTest {
         Assertions.assertEquals(usersDTO, aux);
     }
 
-    @Test
-    public void loginShouldReturnUserDTOWhenEmailAndPasswordIsValid() {
-        UserDTO aux = userService.loginUser(existingEmail, validPassword);
-        userDTO.setLogin(true);
+    // @Test
+    // public void loginShouldReturnUserDTOWhenEmailAndPasswordIsValid() {
+    //     UserDTO aux = userService.loginUser(existingEmail, validPassword);
+    //     userDTO.setLogin(true);
 
-        Assertions.assertEquals(userDTO, aux);
-    }
+    //     Assertions.assertEquals(userDTO, aux);
+    // }
 }
 
 

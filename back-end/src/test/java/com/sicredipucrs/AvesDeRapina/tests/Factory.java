@@ -31,7 +31,6 @@ public class Factory {
         user.setName("Nome");
         user.setEmail("email");
         user.setPassword("senha");
-        user.setLogin(false);
         return user;
     }
 
