@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -79,13 +80,13 @@ public class BirdRepositoryTests {
 
     @Test
     public void findBirdsContainingIsNotNullShouldReturnNonEmptyListWhenParamExists() {
-        var result = repository.findBirdsContainingIsNotNull(existingParam);
+        List<Bird> result = repository.findBirdsContainingIsNotNull(existingParam);
         assertFalse(result.isEmpty());
     }
 
     @Test
     public void findBirdsContainingIsNotNullShouldReturnEmptyListWhenParamDoesNotExist() {
-        var result = repository.findBirdsContainingIsNotNull(nonExistingParam);
+        List<Bird> result = repository.findBirdsContainingIsNotNull(nonExistingParam);
         assertTrue(result.isEmpty());
     }
 }
