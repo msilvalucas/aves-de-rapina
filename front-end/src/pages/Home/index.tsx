@@ -1,42 +1,36 @@
 import React from "react";
+import { Button } from "react-bootstrap";
+import './styles.css'
 
 import Header from "../../Components/Header/Header";
+
+import imgPapagaio from "../../assets/papagaio.png"
 
 const Home = () => {
   return (
     <>
       <Header />
       <div className="container">
-        <div className="jumbotron">
+        {/* <div className="jumbotron"> */}
           <h1 className="display-3">Bem vindo: Lucas!!!</h1>
           <p className="lead">Esse é seu sistema de Aves.</p>
           <p className="lead">
             Total de Aves cadastradas: 80 | Total de Avistamentos cadastrados:
             123
           </p>
-          <hr />
+          {/* <hr /> */}
           <p>
             E essa é sua área administrativa, utilize um dos menus ou botões
             abaixo para navegar pelo sistema.
           </p>
           <p className="lead ">
-            <a
-              className="btn mr-1 btn-primary btn-lg"
-              href="https://bootswatch.com/flatly/#"
-              role="button"
-            >
-              <i className="fa fa-users"></i> Cadastrar Aves
-            </a>
-            <a
-              className="btn ml-1 btn-danger btn-lg"
-              href="https://bootswatch.com/flatly/#"
-              role="button"
-            >
-              <i className="fa fa-users"></i> Cadastrar Avistamentos
-            </a>
+          <Button className="btn" variant="outline-primary"><i className="fa fa-users"></i> Cadastrar Aves</Button>
+          <Button variant="outline-primary"><i className="fa fa-users"></i> Cadastrar Avistamentos</Button>
           </p>
+          <img src="{imgPapagaio}"/>
         </div>
-      </div>
+        
+      {/* </div> */}
     </>
   );
 };

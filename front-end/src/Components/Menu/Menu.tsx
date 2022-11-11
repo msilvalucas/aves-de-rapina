@@ -1,4 +1,5 @@
 import React from "react";
+import { DropdownButton, Dropdown, NavDropdown } from "react-bootstrap";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -14,23 +15,22 @@ const Menu = () => {
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          <Navbar.Brand href="#home">
-            <img src={logo} width={75} alt="Logo" />
+          <Navbar.Brand href="/home">
+            LOGO
           </Navbar.Brand>
+
           <Nav className="me-auto">
-            <Nav.Link className="text-warning" href="#home">
+            <Nav.Link className="text-warning" href="/home">
               <Link to="/">Home</Link>
             </Nav.Link>
-            <Nav.Link href="#users">
-              <Link to="usuarios">Aves</Link>
-            </Nav.Link>
-            <Nav.Link href="#login">
+            <NavDropdown title="Aves" id="basic-nav-dropdown" menuVariant= "dark">
+              <NavDropdown.Item href="/cadastro">Cadastrar Ave </NavDropdown.Item>
+              <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="/login">
               <Link to="login">Avistamentos</Link>
             </Nav.Link>
-            <Nav.Link href="#catalogo">
-              <Link to="catalogo">Catálogo</Link>
-            </Nav.Link>
-            <Nav.Link className="last" href="#logout">
+            <Nav.Link className="last">
               <Link to="/login">Sair</Link>
             </Nav.Link>
           </Nav>
