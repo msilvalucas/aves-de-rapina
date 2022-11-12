@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #E9ECEF !important;
+}
+
+.form-container {
+    background-color: white;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.form-label {
+    color: #a200ff;
+    font-weight: bold;
+}
