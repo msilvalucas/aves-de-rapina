@@ -1,67 +1,71 @@
+// import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import Exibicao from "../Exibicao/Exibicao";
+// import "./Catalogo.css";
+
+// const CatalogoListado = () => {
+//   const [param, setParam] = useState("");
+
+//   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     setParam(event.target.value);
+//   };
+
+//   useEffect(() => {
+//     console.log(param);
+//   }, [param]);
+
+//   return (
+//     <div className="catalogo-container">
+//       <>
+//       <h1>{param}</h1>
+//       <input
+//         type="text"
+//         placeholder="Pesquisar por cor/espécie"
+//         onChange={handleChange}
+//       />
+//       {<Exibicao search={param} />}
+//       </>
+//     </div>
+//   );
+// };
+
+// export default CatalogoListado;
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { Container, Table, Card } from "react-bootstrap";
-import BirdRegister from "../BirdRegister/BirdRegister";
-import './Catalogo.css'
+import { Container, Col, Form, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import Exibicao from "../Exibicao/Exibicao";
+import "./Catalogo.css";
 
-interface IBirdFormState {
-  id: number;
-  namePT: string;
-  nameEN: string;
-  nameLAT: string;
-  size: string;
-  gender: string;
-  color: string;
-  family: string;
-  habitat: string;
-}
+const CatalogoListado = () => {
+  const [param, setParam] = useState("");
 
-const List = () => {
-  const [birds, setBirds] = useState<IBirdFormState[]>([]);
-
-  useEffect(() => {
-    getBirds();
-  }, []);
-
-  const getBirds = () => {
-    axios
-      .get("http://localhost:8080/birds/")
-      .then((res) => setBirds(res.data))
-      .catch((err) => console.log(err, "teste"));
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setParam(event.target.value);
   };
 
+  useEffect(() => {
+    console.log(param);
+  }, [param]);
+
   return (
-    <Container className="table-container">
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr className="table-row">
-            <th>ID</th>
-            <th>Nomes PT / EN / LAT</th>
-            <th>Cor</th>
-            <th>Gênero</th>
-            <th>Tamanho (CM)</th>
-            <th>Família</th>
-            <th>Habitat</th>
-          </tr>
-        </thead>
-        <tbody>
-          {birds.map((bird) => (
-            <tr>
-              <td>{bird.id}</td>
-              <td>
-                {bird.namePT} | {bird.nameEN} | {bird.nameLAT}
-              </td>
-              <td>{bird.color}</td>
-              <td>{bird.gender}</td>
-              <td>{bird.size}</td>
-              <td>{bird.habitat}</td>
-              <td>{bird.family}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Container>
+      <>
+      <Container className="form-container">
+      <Form>
+      <h1>Catálogo de Aves</h1>
+      <Row className="mb-3">
+      <Form.Group as={Col}>
+      <Form.Label className="form-label" onChange={handleChange}>Pesquisar por nome (PT/EN/LAT) ou cor:</Form.Label>
+      <Form.Control
+                type="text"
+                onChange={handleChange}
+              />
+      </Form.Group>
+      </Row>
+      { <Exibicao search={param} /> }
+      </Form>
+      </Container>
+      </>
   );
 };
 
-export default List;
+export default CatalogoListado;
