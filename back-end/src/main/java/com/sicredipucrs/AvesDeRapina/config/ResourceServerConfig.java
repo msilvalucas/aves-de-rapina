@@ -25,7 +25,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
     //Endpoints publicos (sem autenticação)
     private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
     //Endpoints de acesso ao usuário ou administrador
-    private static final String[] USER_OR_ADMIN = { "/birds/**" };
+    private static final String[] USER_OR_ADMIN = { "/birds/**", "/annotations/**" };
     //Endpoints de acesso ao administrador
     private static final String[] ADMIN = { "/users/**" };
 
@@ -45,6 +45,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
         http.authorizeRequests()
             .antMatchers(PUBLIC).permitAll()
             .antMatchers(HttpMethod.GET, USER_OR_ADMIN).permitAll()
+            .antMatchers(HttpMethod.POST, ADMIN).permitAll()
             .antMatchers(USER_OR_ADMIN).hasAnyRole("USER", "ADMIN")
             .antMatchers(ADMIN).hasRole("ADMIN")
             .anyRequest().authenticated();
