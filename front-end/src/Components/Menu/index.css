@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
 .menu {
   margin-bottom: 20px;
-  background-color: #a200ff;
+  background-color: #77D700;
 }
 
 .menu a {
   text-decoration: none;
-  color: #000000;
+  color: white;
   padding: 10px 12px;
   font-size: 16px;
   font-weight: bold;
@@ -14,6 +16,21 @@
 
 .menu a:hover {
   text-decoration: none;
-  color: #323232;
-  transition: 0.5s;
+  color: white;
 }
+
+.logo {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 25px !important;
+  color: white !important;
+  letter-spacing: 4px;
+}
+
+#basic-nav-dropdown {
+  color: white !important;
+}
+
+.dropdown-item {
+  color: #77D700 !important;
+}
+

@@ -5,17 +5,26 @@
     font-family: 'Roboto', sans-serif;
 }
 
-body {
-    background: #E9ECEF !important;
-}
-
 .form-container {
-    background-color: white;
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.54);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(14.1px);
+-webkit-backdrop-filter: blur(14.1px);
+border: 1px solid rgba(255, 255, 255, 1);
+/* width: 900px; */
+    /* background-color: white; */
     padding: 5px;
     border-radius: 15px;
 }
 
 .form-label {
-    color: #a200ff;
+    color: #77D700;
     font-weight: bold;
+}
+
+.botao-cadastro {
+    background-color: #77D700 !important;
+    color: white !important;
 }
