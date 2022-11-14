@@ -10,9 +10,10 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="home-container">
+        <div className="info">
         {/* <div className="jumbotron"> */}
-          <h1 className="display-3">Bem vindo: Lucas!!!</h1>
+          <h1 className="display-3">Bem vindo, Lucas!</h1>
           <p className="lead">Esse é seu sistema de Aves.</p>
           <p className="lead">
             Total de Aves cadastradas: 80 | Total de Avistamentos cadastrados:
@@ -27,7 +28,8 @@ const Home = () => {
           <Button className="btn" variant="outline-primary"><i className="fa fa-users"></i> Cadastrar Aves</Button>
           <Button variant="outline-primary"><i className="fa fa-users"></i> Cadastrar Avistamentos</Button>
           </p>
-          <img src="{imgPapagaio}"/>
+          </div>
+          <img src={imgPapagaio} className= "papagaio"/>
         </div>
         
       {/* </div> */}

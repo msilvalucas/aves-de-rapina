@@ -15,16 +15,16 @@ const Menu = () => {
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          <Navbar.Brand href="/home">
-            LOGO
+          <Navbar.Brand href="/home" className="logo">
+            Aves de Rapina
           </Navbar.Brand>
 
           <Nav className="me-auto">
-            <Nav.Link className="text-warning" href="/home">
+            <Nav.Link className="text-warning" href="/">
               <Link to="/">Home</Link>
             </Nav.Link>
             <NavDropdown title="Aves" id="basic-nav-dropdown" menuVariant= "dark">
-              <NavDropdown.Item href="/cadastro">Cadastrar Ave </NavDropdown.Item>
+              <NavDropdown.Item href="/cadastro" className="dropdown-item">Cadastrar Ave </NavDropdown.Item>
               <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/login">

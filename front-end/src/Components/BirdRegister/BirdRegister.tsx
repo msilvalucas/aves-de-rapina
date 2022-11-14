@@ -173,7 +173,7 @@ const BirdRegister = () => {
             </Form.Group>
           </Row>
 
-          <Button variant="primary" type="submit">
+          <Button type="submit" className="botao-cadastro">
             Cadastrar
           </Button>
         </Form>
