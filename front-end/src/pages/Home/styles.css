@@ -1,3 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+body {
+    background: radial-gradient(circle, rgba(119,215,0,1) 0%, rgba(255,255,255,1) 100%);
+}
+
 .btn {
     margin: 5px;
+    border: 1.5px solid #77D700 !important;
+    color: #77D700 !important;
+}
+
+.btn:hover {
+    background-color: #77D700 !important;
+    color: white !important;
+}
+
+.papagaio {
+    width: 300px;
+}
+
+.home-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.display-3 {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+}
+
+.info {
+    background: rgba(255, 255, 255, 0.41);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(14.6px);
+    -webkit-backdrop-filter: blur(14.6px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 10px;
 }
