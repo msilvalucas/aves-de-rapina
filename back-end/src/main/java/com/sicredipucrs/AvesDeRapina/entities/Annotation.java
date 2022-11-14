@@ -15,13 +15,21 @@ import java.time.LocalDateTime;
 public class Annotation {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime date;
 
     private String place;
 
+    private String text;
+
     @ManyToOne
     @JoinColumn(name="bird_id", nullable=false)
-    private Bird bird;
+    private Bird bird = new Bird();
+
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user = new User();
 }

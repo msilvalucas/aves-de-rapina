@@ -1,5 +1,6 @@
 package com.sicredipucrs.AvesDeRapina.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +32,10 @@ public class AppConfig {
     // Método para ler e traduzir o token
     public JwtTokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }
