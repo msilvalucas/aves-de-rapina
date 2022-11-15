@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
 .menu {
   margin-bottom: 20px;
-  background-color: #77D700;
+  background-color: #8faf1c;
 }
 
 .menu a {
   text-decoration: none;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 10px 12px;
   font-size: 16px;
   font-weight: bold;
@@ -16,21 +15,17 @@
 
 .menu a:hover {
   text-decoration: none;
-  color: white;
-}
-
-.logo {
-  font-family: 'Abril Fatface', cursive;
-  font-size: 25px !important;
-  color: white !important;
-  letter-spacing: 4px;
+  color: rgb(0, 0, 0);
 }
 
 #basic-nav-dropdown {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 .dropdown-item {
-  color: #77D700 !important;
+  color: #000000 !important;
 }
 
+.logo-passarinho {
+  max-width: 50px;
+}

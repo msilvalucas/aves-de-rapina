@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Convergence', sans-serif;
 }
 
 body {
-    background: #E9ECEF !important;
+    background: #ffffff !important;
 }
 
 .form-container {
@@ -16,6 +16,6 @@ body {
 }
 
 .form-label {
-    color: #a200ff;
+    color: #8faf1c;
     font-weight: bold;
 }

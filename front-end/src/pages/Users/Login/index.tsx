@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../../services/api";
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
@@ -12,6 +13,33 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 const Login = () => {
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const history = useNavigate();
+
+  async function login(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const data = {
+      username,
+      password,
+    };
+
+    try {
+      const response = await api.post("auth/login", data);
+      localStorage.setItem("username", username);
+      localStorage.setItem("token", response.data.token);
+      console.log(username, password, response.data.token);
+      alert("ENtrou");
+
+      history("/home");
+    } catch (error) {
+      console.log(error);
+      alert("Desculpa, falha no login!!!");
+    }
+  }
+
   return (
     <div style={styles.container}>
       <div className="col-4">
@@ -20,13 +48,14 @@ const Login = () => {
           <div className="card-body">
             <div className="row">
               <div className="col-lg-12">
-                <form>
+                <form onSubmit={login}>
                   <fieldset>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Email: *</label>
+                      <label htmlFor="exampleInputEmail1">Username: *</label>
                       <input
-                        type="email"
+                        type="text"
                         className="form-control"
+                        onChange={(e) => setUsername(e.target.value)}
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
                         placeholder="Digite o Email"
@@ -38,15 +67,15 @@ const Login = () => {
                         type="password"
                         className="form-control"
                         id="exampleInputPassword1"
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                       />
                     </div>
 
-                    <Link to="/login">
-                      <button type="button" className="btn ml-1 btn-success">
-                        Entrar
-                      </button>
-                    </Link>
+                    <button type="submit" className="btn ml-1 btn-success">
+                      Entrar
+                    </button>
+
                     <Link to="/register">
                       <button type="button" className="btn ml-1 btn-danger">
                         Criar Conta

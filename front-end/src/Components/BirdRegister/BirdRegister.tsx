@@ -66,6 +66,9 @@ const BirdRegister = () => {
                   })
                 }
                 id="namePT"
+                pattern="[A-Za-z\s]+$" required
+                onInvalid={e => (e.target as HTMLInputElement).setCustomValidity('Preencha este campo apenas com letras!')}
+                onInput={e => (e.target as HTMLInputElement).setCustomValidity('')}
               />
             </Form.Group>
 
@@ -80,6 +83,9 @@ const BirdRegister = () => {
                   })
                 }
                 id="nameEN"
+                pattern="[A-Za-z\s]+$" required
+                onInvalid={e => (e.target as HTMLInputElement).setCustomValidity('Preencha este campo apenas com letras!')}
+                onInput={e => (e.target as HTMLInputElement).setCustomValidity('')}
               />
             </Form.Group>
 
@@ -94,6 +100,9 @@ const BirdRegister = () => {
                   })
                 }
                 id="nameLAT"
+                pattern="[A-Za-z\s]+$" required
+                onInvalid={e => (e.target as HTMLInputElement).setCustomValidity('Preencha este campo apenas com letras!')}
+                onInput={e => (e.target as HTMLInputElement).setCustomValidity('')}
               />
             </Form.Group>
           </Row>
@@ -111,7 +120,7 @@ const BirdRegister = () => {
                     size: event.target.value || "",
                   })
                 }
-                id="size"
+                id="size" required
               />
             </Form.Group>
 
@@ -173,7 +182,7 @@ const BirdRegister = () => {
             </Form.Group>
           </Row>
 
-          <Button type="submit" className="botao-cadastro">
+          <Button type="submit" variant="success">
             Cadastrar
           </Button>
         </Form>
