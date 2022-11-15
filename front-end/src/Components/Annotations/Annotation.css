@@ -1,0 +1,14 @@
+.card {
+    transition: all ease 0.5s;
+    cursor: pointer;
+    outline: solid 1px #efefef;
+    min-width: 15rem !important;
+}
+
+.card:hover {
+    outline: solid 1px #77D700;
+}
+
+.col {
+    margin-bottom: 2%;
+}

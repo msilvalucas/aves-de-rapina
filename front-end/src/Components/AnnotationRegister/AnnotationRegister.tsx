@@ -12,29 +12,70 @@ interface IBirdFormState {
   namePT: string;
   nameEN: string;
   nameLAT: string;
+  size: string;
+  gender: string;
+  color: string;
+  family: string;
+  habitat: string;
 }
 
 interface IAnnotationFormState {
   date: Date;
   place: string;
-  idBird: number;
+  bird: IBirdFormState;
   text: string;
-  //idUser: number;
+  user: IUserFormState;
+}
+
+interface IUserFormState {
+  id: number;
 }
 
 const AnnotationRegister = () => {
   const [birds, setBirds] = useState<IBirdFormState[]>([]);
+
+  const [birdEscolhido, setBirdEscolhido] = useState<IBirdFormState>();
+
+  const [idBird, setIdBird] = useState<Number>();
+
+  const [birdFormState, setBirdFormState] = useState<IBirdFormState>({
+    id: 0,
+    namePT: "",
+    nameEN: "",
+    nameLAT: "",
+    size: "",
+    gender: "",
+    color: "",
+    family: "",
+    habitat: "",
+  });
+
+  const [userFormState, setUserFormState] = useState<IUserFormState>({
+    id: 1,
+  });
+
   const [formState, setFormState] = useState<IAnnotationFormState>({
     date: new Date(),
     place: "",
     text: "",
-    idBird: 0,
-    //idUser: 0,
+    bird: birdFormState,
+    user: userFormState,
   });
 
   useEffect(() => {
     getBirds();
   }, []);
+
+  useEffect(() => {
+    getBirdById();
+  }, [idBird]);
+
+  useEffect(() => {
+    setFormState({
+      ...formState,
+      bird: birdEscolhido || birdFormState,
+    });
+  }, [birdEscolhido]);
 
   const getBirds = () => {
     axios
@@ -43,12 +84,21 @@ const AnnotationRegister = () => {
       .catch((err) => console.log(err, "teste"));
   };
 
+  const getBirdById = () => {
+    axios
+      .get(`http://localhost:8080/birds/${idBird}`)
+      .then((res) => setBirdEscolhido(res.data))
+      .catch((err) => console.log(err, "teste"));
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formState, "teste");
-    // axios.post("http://localhost:8080/annotations", formState)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
+    //console.log(birdEscolhido);
+    //console.log(formState, "teste");
+    axios
+      .post("http://localhost:8080/annotations", formState)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -92,12 +142,7 @@ const AnnotationRegister = () => {
               <Form.Label>Ave</Form.Label>
               <Form.Control
                 as="select"
-                onChange={(event) =>
-                  setFormState({
-                    ...formState,
-                    idBird: parseInt(event.target.value) || 0,
-                  })
-                }
+                onChange={(event) => setIdBird(parseInt(event.target.value))}
               >
                 <option>Selecione</option>
                 {birds.map((bird) => (
@@ -123,7 +168,7 @@ const AnnotationRegister = () => {
             </Form.Group>
           </Row>
 
-          <Button variant="primary" type="submit">
+          <Button type="submit">
             Cadastrar
           </Button>
         </Form>
