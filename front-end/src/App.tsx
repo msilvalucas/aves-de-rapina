@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Cadastro from "./pages/Aves";
-import Catalogo from "./pages/Catalogo";
-import Home from "./pages/Home";
-import Login from "./pages/Users/Login";
-import NaoEncontrado from "./pages/NaoEncontrado";
-import Register from "./pages/Users/Register";
+import Cadastro from "./Pages/Aves";
+import Catalogo from "./Pages/Catalogo";
+import Home from "./Pages/Home";
+import Login from "./Pages/Users/Login";
+import NaoEncontrado from "./Pages/NaoEncontrado";
+import Register from "./Pages/Users/Register";
 
 const App = () => {
   return (

@@ -26,7 +26,7 @@ const List = ({search} : {search : string}) => {
     axios
       .get("http://localhost:8080/birds/search?param=" + search)
       .then((res) => setBirds(res.data))
-      .catch((err) => console.log(err, "teste"));
+      .catch((err) => setBirds([]));
   };
 
   return (
