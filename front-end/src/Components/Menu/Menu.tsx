@@ -9,14 +9,15 @@ import { Link } from "react-router-dom";
 import "./index.css";
 
 const logo = require("./../../assets/logo.png");
+import logotipo from "../../assets/logotipo.png"
 
 const Menu = () => {
   return (
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          <Navbar.Brand href="/home" className="logo">
-            Aves de Rapina
+          <Navbar.Brand href="/" className="logo">
+          <img src={logotipo} className= "logo-passarinho"/>
           </Navbar.Brand>
 
           <Nav className="me-auto">
