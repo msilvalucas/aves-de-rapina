@@ -3,6 +3,7 @@ package com.sicredipucrs.AvesDeRapina.config;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableResourceServer
@@ -34,6 +38,19 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
         resources.tokenStore(tokenStore);
     }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT",
+                "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization",
+                "Content-Type", "Origin", "Accept"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         
@@ -48,6 +65,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
             .antMatchers(HttpMethod.POST, ADMIN).permitAll()
             .antMatchers(USER_OR_ADMIN).hasAnyRole("USER", "ADMIN")
             .antMatchers(ADMIN).hasRole("ADMIN")
-            .anyRequest().authenticated();
+            .anyRequest().authenticated()
+            .and().cors().configurationSource(corsConfigurationSource());
     }
 }
