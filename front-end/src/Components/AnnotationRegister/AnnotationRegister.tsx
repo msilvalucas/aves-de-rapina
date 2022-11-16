@@ -37,6 +37,7 @@ const AnnotationRegister = () => {
   const [birdEscolhido, setBirdEscolhido] = useState<IBirdFormState>();
 
   const [idBird, setIdBird] = useState<Number>();
+  const [idUserLogado, setIdUserLogado] = useState<number>(1);
 
   const [birdFormState, setBirdFormState] = useState<IBirdFormState>({
     id: 0,
@@ -51,7 +52,7 @@ const AnnotationRegister = () => {
   });
 
   const [userFormState, setUserFormState] = useState<IUserFormState>({
-    id: 1,
+    id: idUserLogado,
   });
 
   const [formState, setFormState] = useState<IAnnotationFormState>({
@@ -168,7 +169,7 @@ const AnnotationRegister = () => {
             </Form.Group>
           </Row>
 
-          <Button type="submit">
+          <Button variant="success" type="submit">
             Cadastrar
           </Button>
         </Form>
