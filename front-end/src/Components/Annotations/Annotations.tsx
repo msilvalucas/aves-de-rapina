@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Container, Col, Form, Row } from "react-bootstrap";
 import "./Annotation.css";
 
 interface IBirdFormState {
@@ -26,6 +27,14 @@ const Annotations = () => {
   const [annotations, setAnnotations] = useState<IAnnotationFormState[]>([]);
   const [idUserLogado, setIdUserLogado] = useState<number>(1);
 
+  const [busca, setBusca] = useState("");
+  const annotationsFiltradas = annotations.filter((annotation) =>
+    annotation.bird.namePT.toLowerCase().includes(busca.toLowerCase()) ||
+    annotation.bird.nameEN.toLowerCase().includes(busca.toLowerCase()) ||
+    annotation.bird.nameLAT.toLowerCase().includes(busca.toLowerCase()) ||
+    annotation.bird.color.toLowerCase().includes(busca.toLowerCase())
+  );
+
   useEffect(() => {
     getAnnotation();
   }, []);
@@ -39,8 +48,26 @@ const Annotations = () => {
 
   return (
     <div className="container">
+      <Container className="form-container">
+        <Form>
+          <h1>Anotações de avistamentos</h1>
+          <Row className="mb-3">
+            <Form.Group as={Col}>
+              <Form.Label className="form-label">
+                Pesquisar por nome (PT/EN/LAT) ou cor:
+              </Form.Label>
+              <Form.Control
+                type="text"
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+              />
+            </Form.Group>
+          </Row>
+        </Form>
+      </Container>{" "}
+      <br />
       <div className="row row-cols-1 row-cols-md-3 g-4">
-        {annotations.map((annotation) => (
+        {annotationsFiltradas.map((annotation) => (
           <div className="col">
             <div className="card h-100">
               <div className="card-body">
@@ -97,13 +124,19 @@ const Annotations = () => {
                   </svg>
                   &nbsp;&nbsp;
                   {/* dia */}
-                  {annotation.date.toString().slice(8).split("T",1)}/
-                  {/* mês */}
-                  {annotation.date.toString().slice(5).split("-",1)}/
-                  {/* ano */}
-                  {annotation.date.toString().split("-",1)} ás&nbsp;
+                  {annotation.date
+                    .toString()
+                    .slice(8)
+                    .split("T", 1)}
+                  /{/* mês */}
+                  {annotation.date
+                    .toString()
+                    .slice(5)
+                    .split("-", 1)}
+                  /{/* ano */}
+                  {annotation.date.toString().split("-", 1)} ás&nbsp;
                   {/* horário */}
-                  {annotation.date.toString().slice(11,16)} 
+                  {annotation.date.toString().slice(11, 16)}
                   <hr />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
