@@ -96,6 +96,7 @@ const AnnotationRegister = () => {
     event.preventDefault();
     //console.log(birdEscolhido);
     //console.log(formState, "teste");
+    alert("Avistamento cadastrado!");
     axios
       .post("http://localhost:8080/annotations", formState)
       .then((res) => console.log(res))
