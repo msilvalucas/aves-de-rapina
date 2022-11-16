@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class Annotation {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime date;
+    private ZonedDateTime date;
 
     private String place;
 
