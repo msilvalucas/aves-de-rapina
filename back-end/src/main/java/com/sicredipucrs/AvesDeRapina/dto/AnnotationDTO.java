@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class AnnotationDTO {
 
 
     @NotBlank(message = "Date and Time is mandatory")
-    private LocalDateTime date;
+    private ZonedDateTime date;
 
     @NotBlank(message = "Place is mandatory")
     private String place;
