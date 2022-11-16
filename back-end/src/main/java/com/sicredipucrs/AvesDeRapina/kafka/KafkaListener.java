@@ -1,19 +1,19 @@
-package com.sicredipucrs.AvesDeRapina.kafka;
+// package com.sicredipucrs.AvesDeRapina.kafka;
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sicredipucrs.AvesDeRapina.services.AnnotationService;
+// import com.sicredipucrs.AvesDeRapina.services.AnnotationService;
 
-import lombok.AllArgsConstructor;
+// import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-public class KafkaListener {
+// @AllArgsConstructor
+// public class KafkaListener {
 
-    @Autowired
-    private AnnotationService annotationService;
+//     @Autowired
+//     private AnnotationService annotationService;
     
-    @KafkaListener(topics = "annotation", groupId = "myGroup")
-    public void consume(AnnotationDTO annotation) {
-        annotationService.save(annotation);
-    }
-}
+//     @KafkaListener(topics = "annotation", groupId = "myGroup")
+//     public void consume(AnnotationDTO annotation) {
+//         annotationService.save(annotation);
+//     }
+// }
