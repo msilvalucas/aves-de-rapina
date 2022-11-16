@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Users/Login";
 import NaoEncontrado from "./pages/NaoEncontrado";
 import Register from "./pages/Users/Register";
+import CadastroAvistamento from "./pages/Annotation/Register";
+import Anotacoes from "./pages/Annotation/Annotations";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NaoEncontrado />} />
         <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/avistamento" element={<CadastroAvistamento />} />
+        <Route path="/anotacoes" element={<Anotacoes />} />
       </Routes>
     </Router>
   );
