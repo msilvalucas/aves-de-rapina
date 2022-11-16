@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class AnnotationServiceTests {
         annotation.setText("vi ele na esquina");
         annotation.setBird(bird);
         annotation.setUser(user);
-        annotation.setDate(LocalDateTime.parse("2018-01-07T16:11:26.485"));
+        annotation.setDate(ZonedDateTime.now());
         return annotation;
     }
 
