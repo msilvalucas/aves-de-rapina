@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
-import "../BirdRegister/BirdRegister.css";
+import "../CadastroAve/styles.css";
 import api from "../../services/api";
 
 interface IBirdFormState {
@@ -115,21 +115,15 @@ const AnnotationRegister = () => {
       .catch((err) => console.log(err, "teste"));
   };
 
-  const config = {
-    headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
-};
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     alert("Avistamento cadastrado!");
     axios
-      .post("http://localhost:8080/annotations", formState, config)
+      .post("http://localhost:8080/annotations", formState, configuracao)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
-
-
-
+  
   return (
     <>
       <Container className="form-container">

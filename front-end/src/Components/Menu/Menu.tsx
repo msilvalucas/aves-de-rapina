@@ -1,5 +1,5 @@
 import React from "react";
-import { DropdownButton, Dropdown, NavDropdown } from "react-bootstrap";
+import {NavDropdown } from "react-bootstrap";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -15,7 +15,7 @@ const Menu = () => {
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          <Navbar.Brand href="/" className="logo">
+          <Navbar.Brand href="/home" className="logo">
             <img src={logotipo} className="logo-passarinho" />
           </Navbar.Brand>
 

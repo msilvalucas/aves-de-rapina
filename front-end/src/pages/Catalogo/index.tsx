@@ -1,12 +1,11 @@
 import React from "react";
-import BirdRegister from "../../Components/BirdRegister/BirdRegister";
 import Header from "../../Components/Header/Header";
-import CatalogoListado from "../../Components/Catalogo/Catalogo";
+import PesquisaCatalogo from "../../Components/PesquisaCatalogo/PesquisaCatalogo";
 
 const Catalogo = () => {
   return <>
   <Header/>
-  <CatalogoListado />
+  <PesquisaCatalogo />
   </> 
 };
 

@@ -1,22 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Convergence&display=swap');
-
-/* body {
-    background: radial-gradient(circle, rgba(255,255,255,0.5074404761904762) 0%, rgba(87,157,0,1) 100%) !important;
-
-    background-color: white;
-} */
-
  .btn {
     margin: 5px;
-    /* border: 1.5px solid #77D700 !important;
-    color: #77D700 !important; */
 }
-
-/* .btn:hover {
-    background-color: #77D700 !important;
-    color: white !important;
-}  */
 
 .papagaio {
     width: 60%;
@@ -25,19 +9,8 @@
 }
 
 .home-container {
-    /* width: 90%;
-    height: 80vh; */
     display: flex;
     justify-content:left;
     align-items: center;
     overflow: hidden;
 }
-
-/* .display-3 {
-    font-family: 'Convergence', sans-serif;
-} */
-
-/* .info {
-    padding: 10px;
-    font-family: 'Convergence', sans-serif;
-} */

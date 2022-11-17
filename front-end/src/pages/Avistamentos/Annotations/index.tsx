@@ -1,12 +1,12 @@
 import React from "react";
-import Annotations from "../../../Components/Annotations/Annotations";
+import CatalogoAvistamentos from "../../../Components/Avistamentos/CatalogoAvistamentos";
 import Header from "../../../Components/Header/Header";
 
 const Anotacao = () => {
   return (
     <>
       <Header />
-      <Annotations />
+      <CatalogoAvistamentos />
     </>
   );
 };
