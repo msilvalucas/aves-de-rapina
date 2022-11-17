@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import qs from "qs";
+import axios from "axios";
+
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../../services/api";
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
@@ -12,6 +16,31 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 const Register = () => {
+  const history = useNavigate();
+
+  const [id, setId] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // Preventing the page from reloading
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8080/users", {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        history("/");
+      })
+      .catch(function (error) {
+        alert("Desculpe, erro ao cadastrar usuário");
+      });
+  }
+
   return (
     <div style={styles.container}>
       <div className="col-6">
@@ -20,12 +49,14 @@ const Register = () => {
           <div className="card-body">
             <div className="row">
               <div className="col-lg-12">
-                <form>
+                <form method="post" onSubmit={handleSubmit}>
                   <fieldset>
                     <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Nome: *</label>
                       <input
-                        type="email"
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        type="text"
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
@@ -36,6 +67,8 @@ const Register = () => {
                       <label htmlFor="exampleInputEmail1">Email: *</label>
                       <input
                         type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
@@ -49,13 +82,15 @@ const Register = () => {
                       <label htmlFor="exampleInputPassword1">Senha: *</label>
                       <input
                         type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                         className="form-control"
                         id="exampleInputPassword1"
                         placeholder="Password"
                       />
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <label htmlFor="exampleInputPassword1">
                         Repita a Senha: *
                       </label>
@@ -64,14 +99,13 @@ const Register = () => {
                         className="form-control"
                         id="exampleInputPassword1"
                         placeholder="Password"
-                      />
-                    </div>
+                      /> 
+                    </div>*/}
 
-                    <Link to="/">
-                      <button type="button" className="btn ml-1 btn-success">
-                        Salvar
-                      </button>
-                    </Link>
+                    <button type="submit" className="btn ml-1 btn-success">
+                      Salvar
+                    </button>
+
                     <Link to="/">
                       <button type="button" className="btn ml-1 btn-danger">
                         Voltar
