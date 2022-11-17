@@ -20,7 +20,7 @@ const Menu = () => {
           </Navbar.Brand>
 
           <Nav className="me-auto">
-            <Nav.Link className="text-warning" href="/">
+            <Nav.Link className="last">
               <Link to="/home">Home</Link>
             </Nav.Link>
             <NavDropdown
@@ -29,7 +29,7 @@ const Menu = () => {
               menuVariant="dark"
             >
               <NavDropdown.Item href="/cadastro" className="dropdown-item">
-                Cadastrar Ave{" "}
+                Cadastrar Ave
               </NavDropdown.Item>
               <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
             </NavDropdown>
@@ -41,7 +41,10 @@ const Menu = () => {
               <NavDropdown.Item href="/avistamento" className="dropdown-item">
                 Cadastrar Avistamento{" "}
               </NavDropdown.Item>
-              <NavDropdown.Item href="/anotacoes"> Avistamentos </NavDropdown.Item>
+              <NavDropdown.Item href="/anotacoes">
+                {" "}
+                Avistamentos{" "}
+              </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link className="last">
               <Link to="/">Sair</Link>
