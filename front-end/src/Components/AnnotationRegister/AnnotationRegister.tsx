@@ -33,7 +33,7 @@ interface IUserFormState {
 }
 
 const AnnotationRegister = () => {
-  const config = {
+  const configuracao = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },

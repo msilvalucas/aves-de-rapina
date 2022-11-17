@@ -34,7 +34,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     // Endpoints publicos (sem autenticação)
     private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
     // Endpoints de acesso ao usuário ou administrador
-    private static final String[] USER_OR_ADMIN = { "/birds/**", "/annotations/**" };
+    private static final String[] USER_OR_ADMIN = { "/birds/**", "/annotations/**", "/users/email/*" };
     // Endpoints de acesso ao administrador
     private static final String[] ADMIN = { "/users/**" };
 
