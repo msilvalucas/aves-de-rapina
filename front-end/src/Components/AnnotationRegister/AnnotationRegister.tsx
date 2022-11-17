@@ -32,6 +32,12 @@ interface IUserFormState {
 }
 
 const AnnotationRegister = () => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+  };
+
   const [birds, setBirds] = useState<IBirdFormState[]>([]);
 
   const [birdEscolhido, setBirdEscolhido] = useState<IBirdFormState>();
@@ -98,7 +104,7 @@ const AnnotationRegister = () => {
     //console.log(formState, "teste");
     alert("Avistamento cadastrado!");
     axios
-      .post("http://localhost:8080/annotations", formState)
+      .post("http://localhost:8080/annotations", formState, config)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
