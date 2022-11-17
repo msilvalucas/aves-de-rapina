@@ -1,40 +1,7 @@
-// import axios from "axios";
-// import React, { useEffect, useState } from "react";
-// import Exibicao from "../Exibicao/Exibicao";
-// import "./Catalogo.css";
-
-// const CatalogoListado = () => {
-//   const [param, setParam] = useState("");
-
-//   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setParam(event.target.value);
-//   };
-
-//   useEffect(() => {
-//     console.log(param);
-//   }, [param]);
-
-//   return (
-//     <div className="catalogo-container">
-//       <>
-//       <h1>{param}</h1>
-//       <input
-//         type="text"
-//         placeholder="Pesquisar por cor/espécie"
-//         onChange={handleChange}
-//       />
-//       {<Exibicao search={param} />}
-//       </>
-//     </div>
-//   );
-// };
-
-// export default CatalogoListado;
-import axios from "axios";
 import { Container, Col, Form, Row } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import Exibicao from "../Exibicao/Exibicao";
-import "./Catalogo.css";
+import Exibicao from "../CatalogoAve/CatalogoAve";
+import "./styles.css";
 
 const CatalogoListado = () => {
   const [param, setParam] = useState("");

@@ -1,12 +1,12 @@
 import React from "react";
-import BirdRegister from "../../Components/BirdRegister/BirdRegister";
+import CadastroAve from "../../Components/CadastroAve/CadastroAve";
 import Header from "../../Components/Header/Header";
 
 const Cadastro = () => {
   return (
     <>
       <Header />
-      <BirdRegister />;
+      <CadastroAve />;
     </>
   );
 };

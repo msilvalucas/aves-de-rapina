@@ -5,14 +5,14 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Axios from "axios";
-import "./BirdRegister.css";
+import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 interface IBirdFormState {
   namePT: string;
   nameEN: string;
   nameLAT: string;
-  size: string;
+  size: Number;
   gender: string;
   color: string;
   family: string;
@@ -24,21 +24,19 @@ const BirdRegister = () => {
     namePT: "",
     nameEN: "",
     nameLAT: "",
-    size: "",
+    size: new Number(),
     gender: "",
     color: "",
     family: "",
     habitat: "",
   });
 
-  // console.log(formState)
   const history = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // Preventing the page from reloading
     event.preventDefault();
     console.log(formState, "teste");
-    
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
   };
@@ -52,13 +50,6 @@ const BirdRegister = () => {
         history("/catalogo");}
       )
       .catch((err) => console.log(err));
-
-    // get
-    // Axios.get("http://localhost:8080/birds/search/", {
-    //   params: { param: formState.nameEN },
-    // })
-    //   .then((res) => console.log(res, "teste"))
-    //   .catch((err) => console.log(err, "teste"));
   };
 
   return (
@@ -129,7 +120,7 @@ const BirdRegister = () => {
                 onChange={(event) =>
                   setFormState({
                     ...formState,
-                    size: event.target.value || "",
+                    size: new Number(event.target.value) || new Number(),
                   })
                 }
                 id="size" required

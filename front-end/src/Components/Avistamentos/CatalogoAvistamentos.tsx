@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Container, Col, Form, Row } from "react-bootstrap";
-import "./Annotation.css";
+import "./styles.css";
 import api from "../../services/api";
 
 interface IBirdFormState {
@@ -21,7 +21,6 @@ interface IAnnotationFormState {
   place: string;
   text: string;
   bird: IBirdFormState;
-  //idUser: number;
 }
 
 const Annotations = () => {

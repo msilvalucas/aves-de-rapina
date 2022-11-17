@@ -1,14 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-import './Exibicao.css';
+import './styles.css';
 
 interface IBirdFormState {
   id: number;
   namePT: string;
   nameEN: string;
   nameLAT: string;
-  size: string;
+  size: number;
   gender: string;
   color: string;
   family: string;

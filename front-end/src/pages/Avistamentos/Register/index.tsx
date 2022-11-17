@@ -1,5 +1,5 @@
 import React from "react";
-import AnnotationRegister from "../../../Components/AnnotationRegister/AnnotationRegister";
+import AnnotationRegister from "../../../Components/CadastroAvistamento/CadastroAvistamento";
 import Header from "../../../Components/Header/Header";
 
 const CadastroAvistamento = () => {
