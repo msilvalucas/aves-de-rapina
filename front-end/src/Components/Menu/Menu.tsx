@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 
 import "./index.css";
 
-const logo = require("./../../assets/logo.png");
-import logotipo from "../../assets/logotipo.png"
+const logotipo = require("../../assets/logotipo.png");
 
 const Menu = () => {
   return (
@@ -17,22 +16,35 @@ const Menu = () => {
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
           <Navbar.Brand href="/" className="logo">
-          <img src={logotipo} className= "logo-passarinho"/>
+            <img src={logotipo} className="logo-passarinho" />
           </Navbar.Brand>
 
           <Nav className="me-auto">
             <Nav.Link className="text-warning" href="/">
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </Nav.Link>
-            <NavDropdown title="Aves" id="basic-nav-dropdown" menuVariant= "dark">
-              <NavDropdown.Item href="/cadastro" className="dropdown-item">Cadastrar Ave </NavDropdown.Item>
+            <NavDropdown
+              title="Aves"
+              id="basic-nav-dropdown"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="/cadastro" className="dropdown-item">
+                Cadastrar Ave{" "}
+              </NavDropdown.Item>
               <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/login">
-              <Link to="login">Avistamentos</Link>
-            </Nav.Link>
+            <NavDropdown
+              title="Avistamentos"
+              id="basic-nav-dropdown"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="/avistamento" className="dropdown-item">
+                Cadastrar Avistamento{" "}
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/anotacoes"> Avistamentos </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link className="last">
-              <Link to="/login">Sair</Link>
+              <Link to="/">Sair</Link>
             </Nav.Link>
           </Nav>
         </Container>

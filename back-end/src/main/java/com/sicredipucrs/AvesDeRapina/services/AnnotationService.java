@@ -3,6 +3,8 @@ package com.sicredipucrs.AvesDeRapina.services;
 import com.sicredipucrs.AvesDeRapina.dto.AnnotationDTO;
 import com.sicredipucrs.AvesDeRapina.entities.Annotation;
 import com.sicredipucrs.AvesDeRapina.repositories.AnnotationRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class AnnotationService {
     private ModelMapper mapper;
     @Autowired
     private AnnotationRepository annotationRepository;
+
 
     //save
     public AnnotationDTO createAnnotation(AnnotationDTO annotationDTO) {

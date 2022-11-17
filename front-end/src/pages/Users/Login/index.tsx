@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../../services/api";
+import qs from "qs";
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
@@ -21,24 +21,28 @@ const Login = () => {
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const data = {
-      username,
-      password,
-    };
+    const data = qs.stringify(
+      {
+        username,
+        password,
+      },
+      { encode: false }
+    );
 
     try {
-      const response = await api.post("auth/login", data);
-      localStorage.setItem("username", username);
-      localStorage.setItem("token", response.data.token);
-      console.log(username, password, response.data.token);
-      alert("ENtrou");
-
+      const response = await api.post(
+        "oauth/token?grant_type=password&" + data
+      );
+      localStorage.setItem("userName", username);
+      localStorage.setItem("access_token", response.data.access_token);
       history("/home");
     } catch (error) {
-      console.log(error);
-      alert("Desculpa, falha no login!!!");
+      alert("Desculpe, falha no login.");
     }
+    console.log(username);
+    
   }
+  
 
   return (
     <div style={styles.container}>
