@@ -6,7 +6,7 @@ const Anotacao = () => {
   return (
     <>
       <Header />
-      <Annotations />;
+      <Annotations />
     </>
   );
 };

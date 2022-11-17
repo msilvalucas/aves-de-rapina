@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/qs": "^6.9.7",
     "react-router-dom": "^6.4.3"
   }
 }
