@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Axios from "axios";
 import "./BirdRegister.css";
+import { useNavigate } from "react-router-dom";
 
 interface IBirdFormState {
   namePT: string;
@@ -31,22 +32,33 @@ const BirdRegister = () => {
   });
 
   // console.log(formState)
+  const history = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // Preventing the page from reloading
     event.preventDefault();
     console.log(formState, "teste");
+    
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
+  };
+  
+  
+
     // post
-    Axios.post("http://localhost:8080/birds", formState)
-      .then((res) => console.log(res))
+    Axios.post("http://localhost:8080/birds", formState, config)
+      .then((res) => {
+        
+        history("/catalogo");}
+      )
       .catch((err) => console.log(err));
 
     // get
-    Axios.get("http://localhost:8080/birds/search/", {
-      params: { param: formState.nameEN },
-    })
-      .then((res) => console.log(res, "teste"))
-      .catch((err) => console.log(err, "teste"));
+    // Axios.get("http://localhost:8080/birds/search/", {
+    //   params: { param: formState.nameEN },
+    // })
+    //   .then((res) => console.log(res, "teste"))
+    //   .catch((err) => console.log(err, "teste"));
   };
 
   return (
@@ -112,7 +124,7 @@ const BirdRegister = () => {
             <Form.Group as={Col}>
               <Form.Label className="form-label">Tamanho</Form.Label>
               <Form.Control
-                placeholder="Tamanho em CM"
+                placeholder="Tamanho em M"
                 type="number"
                 onChange={(event) =>
                   setFormState({

@@ -15,13 +15,13 @@ const Menu = () => {
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          <Navbar.Brand href="/" className="logo">
+          {/* <Navbar.Brand href="/" className="logo">
             <img src={logotipo} className="logo-passarinho" />
-          </Navbar.Brand>
+          </Navbar.Brand> */}
 
           <Nav className="me-auto">
             <Nav.Link className="text-warning" href="/">
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </Nav.Link>
             <NavDropdown
               title="Aves"
@@ -32,6 +32,16 @@ const Menu = () => {
                 Cadastrar Ave{" "}
               </NavDropdown.Item>
               <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown
+              title="Avistamentos"
+              id="basic-nav-dropdown"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="/avistamento" className="dropdown-item">
+                Cadastrar Avistamento{" "}
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/anotacoes"> Avistamentos </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/login">
               <Link to="login">Avistamentos</Link>
