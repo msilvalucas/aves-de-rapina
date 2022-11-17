@@ -39,7 +39,10 @@ const Login = () => {
     } catch (error) {
       alert("Desculpe, falha no login.");
     }
+    console.log(username);
+    
   }
+  
 
   return (
     <div style={styles.container}>
