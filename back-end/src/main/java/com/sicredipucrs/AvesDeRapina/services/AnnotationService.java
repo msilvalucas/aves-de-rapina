@@ -1,10 +1,9 @@
 package com.sicredipucrs.AvesDeRapina.services;
 
+import com.sicredipucrs.AvesDeRapina.config.KafkaProducerConfig;
 import com.sicredipucrs.AvesDeRapina.dto.AnnotationDTO;
 import com.sicredipucrs.AvesDeRapina.entities.Annotation;
 import com.sicredipucrs.AvesDeRapina.repositories.AnnotationRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,8 @@ public class AnnotationService {
     private ModelMapper mapper;
     @Autowired
     private AnnotationRepository annotationRepository;
+    @Autowired
+    private KafkaProducerConfig annotationProducer;
 
 
     //save
@@ -27,6 +28,11 @@ public class AnnotationService {
         Annotation annotation = mapper.map(annotationDTO, Annotation.class);
         Annotation newAnnotation =  annotationRepository.save(annotation);
         return mapper.map(newAnnotation, AnnotationDTO.class);
+    }
+
+    public AnnotationDTO sendAnnotation(AnnotationDTO annotationDTO) {
+        annotationProducer.produce(annotationDTO);
+        return annotationDTO;
     }
 
     public List<AnnotationDTO> findByUserId(Long userId) {

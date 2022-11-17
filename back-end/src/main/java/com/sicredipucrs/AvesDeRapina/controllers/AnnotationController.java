@@ -1,7 +1,6 @@
 package com.sicredipucrs.AvesDeRapina.controllers;
 
 import com.sicredipucrs.AvesDeRapina.dto.AnnotationDTO;
-import com.sicredipucrs.AvesDeRapina.entities.Annotation;
 import com.sicredipucrs.AvesDeRapina.services.AnnotationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,7 @@ public class AnnotationController {
 
     @PostMapping
     public  AnnotationDTO createAnnotation(@RequestBody AnnotationDTO annotationDTO) {
-        return annotationService.createAnnotation(annotationDTO);
+        return annotationService.sendAnnotation(annotationDTO);
     }
 
     @GetMapping("/users/{id}")
