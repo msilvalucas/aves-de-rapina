@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Container, Col, Form, Row } from "react-bootstrap";
 import "./Annotation.css";
+import api from "../../services/api";
 
 interface IBirdFormState {
   id: number;
@@ -25,7 +26,8 @@ interface IAnnotationFormState {
 
 const Annotations = () => {
   const [annotations, setAnnotations] = useState<IAnnotationFormState[]>([]);
-  const [idUserLogado, setIdUserLogado] = useState<number>(1);
+  const [idUserLogado, setIdUserLogado] = useState<number>();
+  const [userName, setUserName] = useState(`${localStorage.getItem("userName")}`);
 
   const [busca, setBusca] = useState("");
   const annotationsFiltradas = annotations.filter((annotation) =>
@@ -37,7 +39,27 @@ const Annotations = () => {
 
   useEffect(() => {
     getAnnotation();
+  }, [idUserLogado]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/users/email/${userName}`)
+      .then((res) => setIdUserLogado(res.data.id))
+      .catch((err) => console.log(err, "teste"));
+      console.log(idUserLogado);
   }, []);
+
+  async function alteraIdUserLogado() {
+    try {
+      const response = await api.get(
+        `http://localhost:8080/users/email/${userName}`
+      );
+      setIdUserLogado(response.data.id);
+      console.log(idUserLogado);
+    } catch (error) {
+      alert("Desculpe, login inválido...");
+    }
+  }
 
   const getAnnotation = () => {
     axios

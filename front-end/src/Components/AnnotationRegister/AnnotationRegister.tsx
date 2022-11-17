@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
 import "../BirdRegister/BirdRegister.css";
+import api from "../../services/api";
 
 interface IBirdFormState {
   id: number;
@@ -32,12 +33,19 @@ interface IUserFormState {
 }
 
 const AnnotationRegister = () => {
+  const configuracao = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+  };
+
   const [birds, setBirds] = useState<IBirdFormState[]>([]);
 
   const [birdEscolhido, setBirdEscolhido] = useState<IBirdFormState>();
 
   const [idBird, setIdBird] = useState<Number>();
-  const [idUserLogado, setIdUserLogado] = useState<number>(1);
+
+  const [userName, setUserName] = useState(`${localStorage.getItem("userName")}`);
 
   const [birdFormState, setBirdFormState] = useState<IBirdFormState>({
     id: 0,
@@ -52,7 +60,7 @@ const AnnotationRegister = () => {
   });
 
   const [userFormState, setUserFormState] = useState<IUserFormState>({
-    id: idUserLogado,
+    id: 0,
   });
 
   const [formState, setFormState] = useState<IAnnotationFormState>({
@@ -65,6 +73,7 @@ const AnnotationRegister = () => {
 
   useEffect(() => {
     getBirds();
+    alteraIdUserLogado();
   }, []);
 
   useEffect(() => {
@@ -77,6 +86,20 @@ const AnnotationRegister = () => {
       bird: birdEscolhido || birdFormState,
     });
   }, [birdEscolhido]);
+
+  async function alteraIdUserLogado() {
+    try {
+      const response = await api.get(
+        `http://localhost:8080/users/email/${userName}`
+      );
+      setFormState({
+        ...formState,
+        user: response.data || userFormState,
+      });
+    } catch (error) {
+      alert("Desculpe, login inválido...");
+    }
+  }
 
   const getBirds = () => {
     axios
@@ -92,16 +115,20 @@ const AnnotationRegister = () => {
       .catch((err) => console.log(err, "teste"));
   };
 
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
+};
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //console.log(birdEscolhido);
-    //console.log(formState, "teste");
     alert("Avistamento cadastrado!");
     axios
-      .post("http://localhost:8080/annotations", formState)
+      .post("http://localhost:8080/annotations", formState, config)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
+
 
   return (
     <>

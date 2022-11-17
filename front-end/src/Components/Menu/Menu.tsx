@@ -21,7 +21,6 @@ const Menu = () => {
 
           <Nav className="me-auto">
             <Nav.Link href="/home">
-              <Link to="/home">Home</Link>
             </Nav.Link>
             <NavDropdown
               title="Aves"
@@ -33,9 +32,16 @@ const Menu = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link>
-              <Link to="/avistamento">Avistamentos</Link>
-            </Nav.Link>
+            <NavDropdown
+              title="Avistamentos"
+              id="basic-nav-dropdown"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="/avistamento" className="dropdown-item">
+                Cadastrar Avistamento{" "}
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/anotacoes"> Avistamentos </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link className="last">
               <Link to="/">Sair</Link>
             </Nav.Link>

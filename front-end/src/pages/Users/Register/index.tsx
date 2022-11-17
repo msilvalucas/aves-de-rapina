@@ -67,12 +67,12 @@ const Register = () => {
                       />
                     </div>
 
-                    <Link to="/login">
+                    <Link to="/">
                       <button type="button" className="btn ml-1 btn-success">
                         Salvar
                       </button>
                     </Link>
-                    <Link to="/login">
+                    <Link to="/">
                       <button type="button" className="btn ml-1 btn-danger">
                         Voltar
                       </button>

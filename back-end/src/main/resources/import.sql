@@ -1,6 +1,6 @@
 insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Preto', 'Columbidae', 'M', 'Urbano', 'Rock Dove', 'Columba livia', 'Pombo', 0.10);
 insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Branco', 'Dromadidae', 'F', 'Urbano', 'Mourning Dove', 'Zenaida macroura', 'Pombo-branco', 0.15);
-insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Verde', 'Phasianidae', 'M', 'Selva', 'Mallard', 'Anas platyrhynchos', 'Pavão', 0.50);
+insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Verde', 'Phasianidae', 'M', 'Selva', 'Mallard', 'Anas platyrhynchos', 'Pavao', 0.50);
 insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Azul', 'Anatidae', 'F', 'Selva', 'Blue-winged Teal', 'Spatula discors', 'Pato', 0.30);
 insert into bird(color, family, gender, habitat, nameen, namelat, namept, size) values ('Marrom', 'Anatidae', 'M', 'Selva', 'Northern Shoveler', 'Spatula clypeata', 'Pato', 0.30);
 
@@ -24,3 +24,9 @@ insert into tb_user_role(user_id, role_id) values (2, 2);
 insert into tb_user_role(user_id, role_id) values (3, 1);
 insert into tb_user_role(user_id, role_id) values (4, 2);
 insert into tb_user_role(user_id, role_id) values (5, 2);
+
+insert into annotation(date, place, text, bird_id, user_id) values (NOW(), 'Porto Alegre', 'Criatura delicada de plumagem furta-cor', 3, 1);
+insert into annotation(date, place, text, bird_id, user_id) values (NOW(), 'Braganca Paulista', 'Pato trajado com calcas de shopping', 5, 1);
+insert into annotation(date, place, text, bird_id, user_id) values (NOW(), 'Sao Paulo', 'Pato de bico fino e cauda comprida', 4, 1);
+insert into annotation(date, place, text, bird_id, user_id) values (NOW(), 'Londrina', 'Pombo Correio', 2, 1);
+insert into annotation(date, place, text, bird_id, user_id) values (NOW(), 'Rio de Janeiro', 'Pombo de bico grosso e cauda curta', 1, 1);

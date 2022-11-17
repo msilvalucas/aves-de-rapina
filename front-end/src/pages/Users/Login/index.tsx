@@ -35,11 +35,14 @@ const Login = () => {
       );
       localStorage.setItem("userName", username);
       localStorage.setItem("access_token", response.data.access_token);
-      history("/");
+      history("/home");
     } catch (error) {
       alert("Desculpe, falha no login.");
     }
+    console.log(username);
+    
   }
+  
 
   return (
     <div style={styles.container}>
