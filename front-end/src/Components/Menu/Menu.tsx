@@ -15,9 +15,9 @@ const Menu = () => {
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          {/* <Navbar.Brand href="/" className="logo">
+          <Navbar.Brand href="/" className="logo">
             <img src={logotipo} className="logo-passarinho" />
-          </Navbar.Brand> */}
+          </Navbar.Brand>
 
           <Nav className="me-auto">
             <Nav.Link className="text-warning" href="/">
@@ -43,11 +43,8 @@ const Menu = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="/anotacoes"> Avistamentos </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/login">
-              <Link to="login">Avistamentos</Link>
-            </Nav.Link>
             <Nav.Link className="last">
-              <Link to="/login">Sair</Link>
+              <Link to="/">Sair</Link>
             </Nav.Link>
           </Nav>
         </Container>

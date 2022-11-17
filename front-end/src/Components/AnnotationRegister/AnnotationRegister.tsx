@@ -92,16 +92,22 @@ const AnnotationRegister = () => {
       .catch((err) => console.log(err, "teste"));
   };
 
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
+};
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     //console.log(birdEscolhido);
     //console.log(formState, "teste");
     alert("Avistamento cadastrado!");
     axios
-      .post("http://localhost:8080/annotations", formState)
+      .post("http://localhost:8080/annotations", formState, config)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
+
 
   return (
     <>
