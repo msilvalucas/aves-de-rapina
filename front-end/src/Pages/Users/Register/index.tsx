@@ -27,11 +27,15 @@ const Register = () => {
     // Preventing the page from reloading
     e.preventDefault();
 
+    const data = {
+      name,
+      email,
+      password,
+    };
+
     axios
       .post("http://localhost:8080/users", {
-        name: name,
-        email: email,
-        password: password,
+        data,
       })
       .then(function (response) {
         history("/");
