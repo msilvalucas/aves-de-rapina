@@ -1,5 +1,5 @@
 import React from "react";
-import {NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -15,8 +15,10 @@ const Menu = () => {
     <>
       <Navbar className="menu navbar navbar-expand-lg">
         <Container>
-          <Navbar.Brand href="/home" className="logo">
-            <img src={logotipo} className="logo-passarinho" />
+          <Navbar.Brand className="logo">
+            <Link to="/home">
+              <img src={logotipo} className="logo-passarinho" />
+            </Link>
           </Navbar.Brand>
 
           <Nav className="me-auto">
@@ -28,22 +30,23 @@ const Menu = () => {
               id="basic-nav-dropdown"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="/cadastro" className="dropdown-item">
-                Cadastrar Ave
+              <NavDropdown.Item className="dropdown-item">
+                <Link to="/cadastro">Cadastrar Ave</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/catalogo"> Catálogo </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/catalogo">Catálogo</Link>
+              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown
               title="Avistamentos"
               id="basic-nav-dropdown"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="/avistamento" className="dropdown-item">
-                Cadastrar Avistamento{" "}
+              <NavDropdown.Item className="dropdown-item">
+                <Link to="/avistamento">Cadastrar Avistamentos</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/anotacoes">
-                {" "}
-                Avistamentos{" "}
+              <NavDropdown.Item>
+                <Link to="/anotacoes">Avistamentos</Link>
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link className="last">
