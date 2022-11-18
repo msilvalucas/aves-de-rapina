@@ -75,7 +75,7 @@ public class AnnotationServiceTests {
         bird.setNameLAT("calopsita");
         bird.setNamePT("calosptia");
         bird.setNamePT("M");
-        bird.setSize(3.);
+        bird.setSize(3);
 
         User user = mock(User.class);
         user.setId(2L);
