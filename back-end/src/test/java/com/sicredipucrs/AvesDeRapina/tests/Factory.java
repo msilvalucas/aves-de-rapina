@@ -13,7 +13,7 @@ public class Factory {
         bird.setNamePT("Pato");
         bird.setNameEN("Duck");
         bird.setNameLAT("Anas platyrhynchos");
-        bird.setSize(0.40);
+        bird.setSize(4);
         bird.setGender("M");
         bird.setColor("Branco");
         bird.setFamily("Anatidae");
