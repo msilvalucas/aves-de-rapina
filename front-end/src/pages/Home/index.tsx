@@ -3,14 +3,14 @@ import { Button } from "react-bootstrap";
 import "./styles.css";
 
 import Header from "../../Components/Header/Header";
-import imgBlueBird from "../../assets/bluebird.jpg"
+import imgBlueBird from '../../assets/bluebird.jpg';
 
 const Home = () => {
   return (
     <>
       <Header />
       <div className="home-container">
-          <img src={imgBlueBird} className="papagaio" />
+          <img src={imgBlueBird} className="passaro" />
           <div className="info">
             <h1 className="display-3">Seja bem vindo!</h1>
             <hr />
