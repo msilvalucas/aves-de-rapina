@@ -2,6 +2,7 @@ package com.sicredipucrs.AvesDeRapina.services;
 
 import com.sicredipucrs.AvesDeRapina.dto.UserDTO;
 import com.sicredipucrs.AvesDeRapina.dto.UserInsertDTO;
+import com.sicredipucrs.AvesDeRapina.entities.Role;
 import com.sicredipucrs.AvesDeRapina.entities.User;
 import com.sicredipucrs.AvesDeRapina.repositories.UserRepository;
 import com.sicredipucrs.AvesDeRapina.services.exceptions.DatabaseException;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -41,6 +43,8 @@ public class UserService implements UserDetailsService{
         copyDtoToEntity(userDto, user);
         //Encripta a senha
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role role = new Role(2L, "ROLE_USER");
+        user.setRoles(Collections.singleton(role));
         user = userRepository.save(user);
         return new UserDTO(user);
     }
