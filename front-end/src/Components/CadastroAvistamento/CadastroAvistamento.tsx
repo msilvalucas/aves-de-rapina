@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import axios from "axios";
 import "../CadastroAve/styles.css";
 import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface IBirdFormState {
   id: number;
@@ -39,13 +40,17 @@ const AnnotationRegister = () => {
     },
   };
 
+  const history = useNavigate();
+
   const [birds, setBirds] = useState<IBirdFormState[]>([]);
 
   const [birdEscolhido, setBirdEscolhido] = useState<IBirdFormState>();
 
   const [idBird, setIdBird] = useState<Number>();
 
-  const [userName, setUserName] = useState(`${localStorage.getItem("userName")}`);
+  const [userName, setUserName] = useState(
+    `${localStorage.getItem("userName")}`
+  );
 
   const [birdFormState, setBirdFormState] = useState<IBirdFormState>({
     id: 0,
@@ -120,10 +125,12 @@ const AnnotationRegister = () => {
     alert("Avistamento cadastrado!");
     axios
       .post("http://localhost:8080/annotations", formState, configuracao)
-      .then((res) => console.log(res))
+      .then((res) => {
+        history("/anotacoes");
+      })
       .catch((err) => console.log(err));
   };
-  
+
   return (
     <>
       <Container className="form-container">
