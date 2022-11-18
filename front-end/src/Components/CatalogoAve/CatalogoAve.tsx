@@ -37,7 +37,7 @@ const List = ({search} : {search : string}) => {
             <th>Nomes PT / EN / LAT</th>
             <th>Cor</th>
             <th>Gênero</th>
-            <th>Tamanho (M)</th>
+            <th>Tamanho (CM)</th>
             <th>Família</th>
             <th>Habitat</th>
           </tr>

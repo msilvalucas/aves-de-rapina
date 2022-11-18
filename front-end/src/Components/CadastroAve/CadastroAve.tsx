@@ -115,7 +115,7 @@ const BirdRegister = () => {
             <Form.Group as={Col}>
               <Form.Label className="form-label">Tamanho</Form.Label>
               <Form.Control
-                placeholder="Tamanho em M"
+                placeholder="Tamanho em CM"
                 type="number"
                 onChange={(event) =>
                   setFormState({
