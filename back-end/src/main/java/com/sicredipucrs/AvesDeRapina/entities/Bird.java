@@ -25,8 +25,7 @@ public class Bird {
     private String namePT;
     private String nameEN;
     private String nameLAT;
-
-    private Double size;
+    private int size;
     private String gender;
     private String color;
     private String family;
