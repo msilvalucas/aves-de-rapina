@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { NavDropdown } from "react-bootstrap";
 
 import Container from "react-bootstrap/Container";
@@ -7,10 +8,16 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
 import "./index.css";
-
 const logotipo = require("../../assets/logotipo.png");
 
 const Menu = () => {
+  const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
+
+  const logout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("access_token");
+    setIsLoggedin(false);
+  };
   return (
     <>
       <Navbar className="menu navbar navbar-expand-lg">
@@ -50,7 +57,9 @@ const Menu = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link className="last">
-              <Link to="/">Sair</Link>
+              <Link onClick={logout} to="/">
+                Sair
+              </Link>
             </Nav.Link>
           </Nav>
         </Container>

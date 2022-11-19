@@ -21,28 +21,29 @@ const Login = () => {
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const data = qs.stringify(
-      {
-        username,
-        password,
-      },
-      { encode: false }
-    );
-
-    try {
-      const response = await api.post(
-        "oauth/token?grant_type=password&" + data
+    if (username === "" || password === "") {
+      alert("Preencha todos os campos!");
+    } else {
+      const data = qs.stringify(
+        {
+          username,
+          password,
+        },
+        { encode: false }
       );
-      localStorage.setItem("userName", username);
-      localStorage.setItem("access_token", response.data.access_token);
-      history("/home");
-    } catch (error) {
-      alert("Desculpe, falha no login.");
+
+      try {
+        const response = await api.post(
+          "oauth/token?grant_type=password&" + data
+        );
+        localStorage.setItem("userName", username);
+        localStorage.setItem("access_token", response.data.access_token);
+        history("/home");
+      } catch (error) {
+        alert("Desculpe, falha no login.");
+      }
     }
-    console.log(username);
-    
   }
-  
 
   return (
     <div style={styles.container}>
@@ -58,6 +59,7 @@ const Login = () => {
                       <label htmlFor="exampleInputEmail1">Username: *</label>
                       <input
                         type="text"
+                        required
                         className="form-control"
                         onChange={(e) => setUsername(e.target.value)}
                         id="exampleInputEmail1"
@@ -69,6 +71,7 @@ const Login = () => {
                       <label htmlFor="exampleInputPassword1">Senha: *</label>
                       <input
                         type="password"
+                        required
                         className="form-control"
                         id="exampleInputPassword1"
                         onChange={(e) => setPassword(e.target.value)}

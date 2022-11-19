@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 import qs from "qs";
 import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../../services/api";
+import { ErrorMessage } from "formik";
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
@@ -15,7 +16,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
-const Register = () => {
+interface ErrorMessageProps {
+  comp: JSX.Element;
+}
+
+const Register = (): JSX.Element => {
   const history = useNavigate();
 
   const [id, setId] = useState(null);
@@ -23,22 +28,48 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    setSubmitted(false);
+  };
+
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    setSubmitted(false);
+  };
+
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    setSubmitted(false);
+  };
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    // Preventing the page from reloading
     e.preventDefault();
 
-    axios
-      .post("http://localhost:8080/users", {
-        name: name,
-        email: email,
-        password: password,
-      })
-      .then(function (response) {
-        history("/");
-      })
-      .catch(function (error) {
-        alert("Desculpe, erro ao cadastrar usuário");
-      });
+    if (name === "" || email === "" || password === "") {
+      setError(true);
+      alert("Preencha todos os campos!");
+    } else {
+      axios
+        .post("http://localhost:8080/users", {
+          name: name,
+          email: email,
+          password: password,
+        })
+        .then(function (response) {
+          history("/");
+        })
+        .catch(function (err) {
+          console.log(err);
+          alert("Desculpe, erro ao cadastrar usuário");
+        });
+      setSubmitted(true);
+      setError(false);
+      alert("Usuário Cadastrado");
+    }
   }
 
   return (
@@ -54,7 +85,8 @@ const Register = () => {
                     <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Nome: *</label>
                       <input
-                        onChange={(e) => setName(e.target.value)}
+                        required
+                        onChange={handleName}
                         value={name}
                         type="text"
                         className="form-control"
@@ -67,7 +99,8 @@ const Register = () => {
                       <label htmlFor="exampleInputEmail1">Email: *</label>
                       <input
                         type="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        onChange={handleEmail}
                         value={email}
                         className="form-control"
                         id="exampleInputEmail1"
@@ -81,8 +114,9 @@ const Register = () => {
                     <div className="form-group">
                       <label htmlFor="exampleInputPassword1">Senha: *</label>
                       <input
+                        required
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePassword}
                         value={password}
                         className="form-control"
                         id="exampleInputPassword1"
